@@ -1,0 +1,30 @@
+.Message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: var(--ZIndex__message);
+}
+
+.Message__area {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.Message__item {
+  font-family: var(--Theme__fontDisplay);
+  font-weight: var(--Theme__fontWeightBold);
+  font-size: clamp(1em, 6vw, 10em);
+  white-space: nowrap;
+  line-height: 1;
+  text-align: center;
+  -webkit-text-stroke: 0.1vw var(--Theme__text100);
+}

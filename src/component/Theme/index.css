@@ -1,0 +1,27 @@
+:root {
+  --Theme__background: var(--Theme__primary100);
+}
+
+:root {
+  --Theme__fontSize: calc(var(--Theme__scale) * 0.01rem);
+  --Theme__fontWeightLight: 300;
+  --Theme__fontWeightRegular: 400;
+  --Theme__fontWeightMedium: 500;
+  --Theme__fontWeightBold: 700;
+}
+
+:root {
+  --Theme__transitionXFastBounce: calc(var(--Theme__transitionSpeedXFast) * 1s) var(--Theme__easingBounce);
+  --Theme__transitionFastBounce: calc(var(--Theme__transitionSpeedFast) * 1s) var(--Theme__easingBounce);
+  --Theme__transitionMediumBounce: calc(var(--Theme__transitionSpeedMedium) * 1s) var(--Theme__easingBounce);
+  --Theme__transitionSlowBounce: calc(var(--Theme__transitionSpeedSlow) * 1s) var(--Theme__easingBounce);
+  --Theme__transitionXSlowBounce: calc(var(--Theme__transitionSpeedXSlow) * 1s) var(--Theme__easingBounce);
+}
+
+:root {
+  --Theme__transitionXFastEase: calc(var(--Theme__transitionSpeedXFast) * 1s) ease-in-out;
+  --Theme__transitionFastEase: calc(var(--Theme__transitionSpeedFast) * 1s) ease-in-out;
+  --Theme__transitionMediumEase: calc(var(--Theme__transitionSpeedMedium) * 1s) ease-in-out;
+  --Theme__transitionSlowEase: calc(var(--Theme__transitionSpeedSlow) * 1s) ease-in-out;
+  --Theme__transitionXSlowEase: calc(var(--Theme__transitionSpeedXSlow) * 1s) ease-in-out;
+}

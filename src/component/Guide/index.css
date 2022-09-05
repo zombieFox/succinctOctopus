@@ -1,0 +1,95 @@
+.Guide {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--ZIndex__guide);
+  pointer-events: none;
+}
+
+.Guide__toggle {
+  background-color: hsla(var(--Theme__accent2H), calc(var(--Theme__accent2S) * 1%), calc(var(--Theme__accent2L) * 1%), 0.8);
+  color: var(--Theme__text100);
+  border: 0;
+  border-radius: 100%;
+  padding: 1em;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  width: 3vmin;
+  height: 3vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.Guide__toggle:focus {
+  outline: none;
+}
+
+.Guide__modal {
+  background-color: hsla(var(--Theme__primary2H), calc(var(--Theme__primary2S) * 1%), calc(var(--Theme__primary2L) * 1%), 0.9);
+  border-radius: calc(var(--Grid__radiusCount) * 0.2vmax);
+  padding: 2em;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2em;
+  font-size: 0.75em;
+  max-height: 90vh;
+  max-width: 90vw;
+  overflow: scroll;
+  pointer-events: all;
+}
+
+.Guide__show .Guide__modal {
+  display: flex;
+}
+
+.Guide__intro,
+.Guide__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.Guide__contentItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2em;
+  width: 100%;
+}
+
+.Guide__key {
+  font-family: var(--Theme__fontDisplay);
+  font-weight: var(--Theme__fontWeightBold);
+  flex: 0 0 4em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.25em;
+  line-height: 1;
+}
+
+.Guide__keyItem {
+  background-color: var(--Theme__accent200);
+  border-bottom: 2px solid var(--Theme__accent600);
+  border-radius: 6px;
+  color: var(--Theme__text200);
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Guide__message {}

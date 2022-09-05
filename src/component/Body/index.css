@@ -1,0 +1,23 @@
+::selection {
+  background-color: var(--Theme__accent900);
+  color: var(--Theme__accent500);
+}
+
+html,
+body {
+  background-color: var(--Theme__background);
+  font-size: var(--Theme__fontSize);
+  line-height: 1.6;
+  font-family: var(--Theme__fontUi);
+  font-weight: var(--Theme__fontWeightRegular);
+  font-style: normal;
+  color: var(--Theme__text900);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

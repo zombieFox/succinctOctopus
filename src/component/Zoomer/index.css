@@ -1,0 +1,88 @@
+.Zoomer {
+  background-color: var(--Theme__background);
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--Theme__primary100);
+  border-radius: 100%;
+  position: absolute;
+  width: 0;
+  height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: var(--ZIndex__zoomer);
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  box-shadow: 0 2em 3em rgba(0, 0, 0, 0.5);
+  transition: border-width var(--Theme__transitionMediumEase), width var(--Theme__transitionMediumEase), height var(--Theme__transitionMediumEase);
+}
+
+.Zoomer.Zoomer__show {
+  width: calc(var(--Zoomer__size) * 1vmin);
+  height: calc(var(--Zoomer__size) * 1vmin);
+  pointer-events: none;
+  transition: border-width var(--Theme__transitionSlowBounce), width var(--Theme__transitionSlowBounce), height var(--Theme__transitionSlowBounce);
+}
+
+.Zoomer.Zoomer__show.Zoomer__border {
+  border-width: calc(var(--Zoomer__border) * 1px);
+}
+
+.Zoomer__pinpoint {
+  border-radius: 100%;
+  top: calc(var(--Zoomer__cursorY) * 1px);
+  left: calc(var(--Zoomer__cursorX) * 1px);
+}
+
+.Zoomer__square {
+  border-radius: 10px;
+  top: calc(var(--Zoomer__cursorY) * 1px);
+  left: calc(var(--Zoomer__cursorX) * 1px);
+}
+
+.Zoomer__teardrop {
+  border-radius: 5vmin 100% 100% 100%;
+  top: calc(((var(--Zoomer__cursorY) + var(--Zoomer__teardropOffset)) * 1px));
+  left: calc(((var(--Zoomer__cursorX) + var(--Zoomer__teardropOffset)) * 1px));
+  transform: translate(0, 0);
+}
+
+.Zoomer__teardrop.Zoomer__quadrantRight {
+  border-radius: 100% 5vmin 100% 100%;
+  left: initial;
+  right: calc((var(--Zoomer__viewportWidth) - var(--Zoomer__cursorX) + var(--Zoomer__teardropOffset)) * 1px);
+}
+
+.Zoomer__teardrop.Zoomer__quadrantBottom {
+  border-radius: 100% 100% 100% 5vmin;
+  top: initial;
+  bottom: calc((var(--Zoomer__viewportHeight) - var(--Zoomer__cursorY) + var(--Zoomer__teardropOffset)) * 1px);
+}
+
+.Zoomer__teardrop.Zoomer__quadrantRight.Zoomer__quadrantBottom {
+  border-radius: 100% 100% 5vmin 100%;
+  left: initial;
+  top: initial;
+  right: calc((var(--Zoomer__viewportWidth) - var(--Zoomer__cursorX) + var(--Zoomer__teardropOffset)) * 1px);
+  bottom: calc((var(--Zoomer__viewportHeight) - var(--Zoomer__cursorY) + var(--Zoomer__teardropOffset)) * 1px);
+}
+
+.Zoomer .Image,
+.Zoomer .Video {
+  border-radius: calc((var(--Grid__radiusCount) * 0.2vmax) * var(--Zoomer__magnification));
+  min-width: calc(var(--Zoomer__mediaItemWidth) * 1px);
+  min-height: calc(var(--Zoomer__mediaItemHeight) * 1px);
+  transform: translate(calc(var(--Zoomer__magnificationX) * 1px), calc(var(--Zoomer__magnificationY) * 1px));
+  transition: filter var(--Theme__transitionFastEase);
+}
+
+.Zoomer .Image,
+.Zoomer .Video {
+  filter: blur(4em);
+}
+
+.Zoomer.Zoomer__moving .Image,
+.Zoomer.Zoomer__moving .Video {
+  filter: none;
+}

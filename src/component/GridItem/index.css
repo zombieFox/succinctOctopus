@@ -1,0 +1,133 @@
+.GridItem {
+  border-radius: calc(var(--Grid__radiusCount) * 0.2vmax);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  z-index: var(--ZIndex__mediaItem);
+}
+
+.Grid__square .GridItem {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
+.Grid__square .GridItem .Image,
+.Grid__square .GridItem .Video {
+  aspect-ratio: var(--GridItem__aspectRatio);
+  width: initial;
+  height: initial;
+  transform-origin: center;
+  transition: none;
+}
+
+.Grid__square .GridItem:hover .Image,
+.Grid__square .GridItem:hover .Video {
+  /* transition: transform var(--Theme__transitionXFastEase); */
+}
+
+.Grid__square .GridItem.GridItem__square {
+  flex-direction: row;
+}
+
+.Grid__square .GridItem.GridItem__portrait {
+  flex-direction: column;
+}
+
+.Grid__square .GridItem.GridItem__landscape {
+  flex-direction: row;
+}
+
+.Grid__square .GridItem.GridItem__square .Image,
+.Grid__square .GridItem.GridItem__square .Video {
+  width: 100%;
+}
+
+.Grid__square .GridItem.GridItem__portrait .Image,
+.Grid__square .GridItem.GridItem__portrait .Video {
+  width: 100%;
+  transform: translateY(calc(var(--GridItem__panY) * 1px));
+}
+
+.Grid__square .GridItem.GridItem__landscape .Image,
+.Grid__square .GridItem.GridItem__landscape .Video {
+  height: 100%;
+  transform: translateX(calc(var(--GridItem__panX) * 1px));
+}
+
+.Grid__grid .GridItem {}
+
+.Grid__grid .GridItem.GridItem__square {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.Grid__grid .GridItem.GridItem__portrait {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.Grid__grid .GridItem.GridItem__landscape {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.Grid__flex .GridItem {
+  max-height: calc(var(--Grid__flexSizeCount) * 1vmin);
+  aspect-ratio: var(--GridItem__aspectRatio);
+}
+
+.Grid__flex .GridItem {
+  flex-grow: 1;
+}
+
+.Grid__column .GridItem {
+  width: 100%;
+  aspect-ratio: var(--GridItem__aspectRatio);
+}
+
+.Grid__solo .GridItem {
+  aspect-ratio: var(--GridItem__aspectRatio);
+  max-width: 100%;
+  max-height: 100%;
+  scroll-snap-align: center;
+  position: relative;
+}
+
+@media (orientation: landscape) {
+  .Grid__solo .GridItem.GridItem__square {
+    height: 100%;
+  }
+}
+
+@media (orientation: portrait) {
+  .Grid__solo .GridItem.GridItem__square {
+    width: 100%;
+  }
+}
+
+@media (orientation: landscape) {
+  .Grid__solo .GridItem.GridItem__portrait {
+    height: 100%;
+  }
+}
+
+@media (orientation: portrait) {
+  .Grid__solo .GridItem.GridItem__portrait {
+    width: 100%;
+  }
+}
+
+@media (orientation: landscape) {
+  .Grid__solo .GridItem.GridItem__landscape {
+    height: 100%;
+  }
+}
+
+@media (orientation: portrait) {
+  .Grid__solo .GridItem.GridItem__landscape {
+    width: 100%;
+  }
+}

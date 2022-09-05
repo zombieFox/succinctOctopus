@@ -1,0 +1,54 @@
+.Grid {
+  padding: calc(var(--Grid__gapCount) * 0.2vmax);
+  gap: calc(var(--Grid__gapCount) * 0.2vmax);
+}
+
+.Grid.Grid__zoomer.Grid__zoomerTeardrop {
+  cursor: crosshair;
+}
+
+.Grid.Grid__zoomer.Grid__zoomerPinpoint,
+.Grid.Grid__zoomer.Grid__zoomerSquare {
+  cursor: none;
+}
+
+.Grid.Grid__flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Grid.Grid__square {
+  display: grid;
+  grid-template-columns: repeat(var(--Grid__squareSizeCount), 1fr);
+}
+
+.Grid.Grid__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--Grid__gridSizeCount), 1fr);
+  grid-auto-rows: calc((100vw - ((var(--Grid__gapCount) * 0.2vmax) * var(--Grid__gridSizeCount))) / var(--Grid__gridSizeCount));
+  grid-auto-flow: dense;
+  justify-items: stretch;
+  align-items: stretch;
+  max-width: 100%;
+}
+
+.Grid.Grid__column {
+  display: grid;
+  width: calc(var(--Grid__columnSizeCount) * 1%);
+  max-width: 100%;
+}
+
+.Grid.Grid__solo {
+  display: grid;
+  align-self: start;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 100%;
+  justify-items: center;
+  align-items: center;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}

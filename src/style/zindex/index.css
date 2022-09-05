@@ -1,0 +1,6 @@
+:root {
+  --ZIndex__mediaItem: 1000;
+  --ZIndex__zoomer: 2000;
+  --ZIndex__guide: 3000;
+  --ZIndex__message: 4000;
+}

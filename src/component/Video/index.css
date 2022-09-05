@@ -1,0 +1,13 @@
+.Video {
+  width: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.Video:focus {
+  outline: none;
+}
+
+.Video__loaded {
+  display: block;
+}
