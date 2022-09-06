@@ -264,68 +264,6 @@ export const Grid = function() {
 
   }
 
-  this.videoMute = true;
-
-  this.allVideoTogglePlay = () => {
-
-    if (config.media.autoPlay) {
-      config.media.autoPlay = false;
-    } else {
-      config.media.autoPlay = true;
-    }
-
-    this.allMediaItem.forEach(mediaItem => {
-
-      switch (mediaItem.gridItem.type) {
-
-        case 'video':
-
-          if (config.media.autoPlay) {
-            mediaItem.gridItem.node.mediaItem.play();
-          } else {
-            mediaItem.gridItem.node.mediaItem.pause();
-          }
-
-          break;
-
-      }
-
-    });
-
-    console.log(`[Grid] toggle all video play`);
-
-  }
-
-  this.allVideoToggleMute = () => {
-
-    if (this.videoMute) {
-      this.videoMute = false;
-    } else {
-      this.videoMute = true;
-    }
-
-    this.allMediaItem.forEach(mediaItem => {
-
-      switch (mediaItem.gridItem.type) {
-
-        case 'video':
-
-          if (this.videoMute) {
-            mediaItem.gridItem.node.mediaItem.mute();
-          } else {
-            mediaItem.gridItem.node.mediaItem.unmute();
-          }
-
-          break;
-
-      }
-
-    });
-
-    console.log(`[Grid] toggle all video mute`);
-
-  }
-
   this.magnificationVideoSync = () => {
 
     this.zoomer.syncVideo();
@@ -458,6 +396,68 @@ export const Grid = function() {
 
   }
 
+  this.videoMute = true;
+
+  this.allVideoTogglePlay = () => {
+
+    if (config.media.autoPlay) {
+      config.media.autoPlay = false;
+    } else {
+      config.media.autoPlay = true;
+    }
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      switch (mediaItem.gridItem.type) {
+
+        case 'video':
+
+          if (config.media.autoPlay) {
+            mediaItem.gridItem.node.mediaItem.play();
+          } else {
+            mediaItem.gridItem.node.mediaItem.pause();
+          }
+
+          break;
+
+      }
+
+    });
+
+    console.log(`[Grid] toggle all video play`);
+
+  }
+
+  this.allVideoToggleMute = () => {
+
+    if (this.videoMute) {
+      this.videoMute = false;
+    } else {
+      this.videoMute = true;
+    }
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      switch (mediaItem.gridItem.type) {
+
+        case 'video':
+
+          if (this.videoMute) {
+            mediaItem.gridItem.node.mediaItem.mute();
+          } else {
+            mediaItem.gridItem.node.mediaItem.unmute();
+          }
+
+          break;
+
+      }
+
+    });
+
+    console.log(`[Grid] toggle all video mute`);
+
+  }
+
   this.bind = () => {
 
     let reset = new KeyboardShortcut({
@@ -555,6 +555,12 @@ export const Grid = function() {
 
         }
 
+        if (config.media.autoPlay) {
+
+          this.autoPlayVideoInView();
+
+        }
+
       }
     });
 
@@ -591,6 +597,12 @@ export const Grid = function() {
             this.panReset();
             app.message.render(`${this.view.option[3].id.toUpperCase()} ${config.grid.view.column.size.count}`);
             break;
+
+        }
+
+        if (config.media.autoPlay) {
+
+          this.autoPlayVideoInView();
 
         }
 
