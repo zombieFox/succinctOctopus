@@ -669,6 +669,8 @@ export const Grid = function() {
 
             this.magnificationMove();
 
+            this.autoPlayVideoInView();
+
             break;
 
         }
@@ -689,6 +691,8 @@ export const Grid = function() {
             this.mediaInView();
 
             this.magnificationMove();
+
+            this.autoPlayVideoInView();
 
             break;
 
