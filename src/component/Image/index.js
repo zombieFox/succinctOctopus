@@ -55,6 +55,8 @@ export const Image = function(mediaData) {
 
       applyCSSVar('--GridItem__aspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
 
+      mediaData.gridItem.size();
+
       this.node.image.classList.add('Image__loaded');
 
     }

@@ -1,16 +1,16 @@
 export const config = {
 
   media: {
-    image: true,
+    image: false,
     video: true,
-    autoPlay: true,
+    autoPlay: false,
     randomOrder: true,
   },
 
   grid: {
     view: {
       square: {
-        active: true,
+        active: false,
         size: { count: 4, default: 4, min: 2, max: 100, increment: 1 },
       },
       grid: {
@@ -26,7 +26,7 @@ export const config = {
         size: { count: 36, default: 36, min: 6, max: 100, increment: 1 },
       },
       solo: {
-        active: false,
+        active: true,
         size: { count: 4, default: 4, min: 3, max: 100, increment: 1 },
       },
     },
@@ -41,7 +41,7 @@ export const config = {
       count: 2,
       default: 2,
       min: 0,
-      max: 1000,
+      max: 50,
       increment: 1,
     },
   },

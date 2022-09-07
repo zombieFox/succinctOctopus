@@ -8,13 +8,16 @@ import './index.css';
 export const Video = function(mediaData) {
 
   this.node = {
-    video: node('video|class:Video,loop,muted'),
-    source: node('source')
+    video: node('div|class:Video'),
+    content: node('video|class:Video__content,loop,muted'),
+    source: node('source'),
+    progress: node('div|class:Video__progress'),
+    bar: node('div|class:Video__bar'),
   }
 
   this.play = () => {
 
-    var playPromise = this.node.video.play();
+    var playPromise = this.node.content.play();
 
     if (playPromise !== undefined) {
 
@@ -28,7 +31,7 @@ export const Video = function(mediaData) {
 
   this.pause = () => {
 
-    this.node.video.pause();
+    this.node.content.pause();
 
   }
 
@@ -58,19 +61,19 @@ export const Video = function(mediaData) {
 
   this.isPaused = () => {
 
-    return this.node.video.paused;
+    return this.node.content.paused;
 
   }
 
   this.unmute = () => {
 
-    this.node.video.muted = false;
+    this.node.content.muted = false;
 
   }
 
   this.mute = () => {
 
-    this.node.video.muted = true;
+    this.node.content.muted = true;
 
   }
 
@@ -90,7 +93,7 @@ export const Video = function(mediaData) {
 
   this.isMuted = () => {
 
-    return this.node.video.muted;
+    return this.node.content.muted;
 
   }
 
@@ -98,7 +101,7 @@ export const Video = function(mediaData) {
 
     if (time != 'undefined') {
 
-      this.node.video.currentTime = time;
+      this.node.content.currentTime = time;
 
     };
 
@@ -106,7 +109,7 @@ export const Video = function(mediaData) {
 
   this.currentTimeGet = (time) => {
 
-    return this.node.video.currentTime;
+    return this.node.content.currentTime;
 
   }
 
@@ -116,21 +119,27 @@ export const Video = function(mediaData) {
 
   this.aspectRatio = () => {
 
-    const gcd = this.gcd(this.node.video.videoWidth, this.node.video.videoHeight);
+    const gcd = this.gcd(this.node.content.videoWidth, this.node.content.videoHeight);
 
-    return `${this.node.video.videoWidth / gcd} / ${this.node.video.videoHeight / gcd}`;
+    return `${this.node.content.videoWidth / gcd} / ${this.node.content.videoHeight / gcd}`;
 
   }
 
   this.render = () => {
 
-    this.node.video.appendChild(this.node.source);
+    this.node.video.appendChild(this.node.content);
 
-    this.node.video.muted = true;
+    this.node.content.appendChild(this.node.source);
 
-    this.node.video.loop = true;
+    this.node.progress.appendChild(this.node.bar);
 
-    this.node.video.autoplay = config.media.autoPlay;
+    this.node.video.appendChild(this.node.progress);
+
+    this.node.content.muted = true;
+
+    this.node.content.loop = true;
+
+    this.node.content.autoplay = config.media.autoPlay;
 
     if (mediaData.path.includes('mp4') || mediaData.path.endsWith('mp4')) {
 
@@ -152,7 +161,13 @@ export const Video = function(mediaData) {
 
     let cursorPostionX = event.clientX - mediaItemLeftPosition;
 
-    this.node.video.currentTime = cursorPostionX / mediaData.gridItem.getNode().clientWidth * this.node.video.duration;
+    this.node.content.currentTime = cursorPostionX / mediaData.gridItem.getNode().clientWidth * this.node.content.duration;
+
+  }
+
+  this.progressBar = (event) => {
+
+    applyCSSVar('--Video__progress', ((this.node.content.currentTime / this.node.content.duration) * 100), this.node.video);
 
   }
 
@@ -160,7 +175,7 @@ export const Video = function(mediaData) {
 
   this.bind = () => {
 
-    this.node.video.addEventListener('click', () => {
+    this.node.content.addEventListener('click', () => {
 
       if (event.metaKey) {
 
@@ -172,45 +187,49 @@ export const Video = function(mediaData) {
 
     });
 
-    this.node.video.addEventListener('click', (event) => {
+    this.node.content.addEventListener('click', (event) => {
 
       if (event.shiftKey) { this.toggleMuted(); }
 
     });
 
-    this.node.video.addEventListener('mousemove', (event) => {
+    this.node.content.addEventListener('mousemove', (event) => {
 
-      if (event.metaKey) {
-
-        this.scrub(event);
-
-      }
+      if (event.metaKey) { this.scrub(event); }
 
     });
 
-    this.node.video.addEventListener('loadedmetadata', () => {
+    this.node.content.addEventListener('timeupdate', (event) => {
+
+      this.progressBar(event);
+
+    });
+
+    this.node.content.addEventListener('loadedmetadata', () => {
 
       if (
-        (this.node.video.videoWidth == this.node.video.videoHeight) ||
+        (this.node.content.videoWidth == this.node.content.videoHeight) ||
         (
-          (this.node.video.videoWidth > (this.node.video.videoHeight * this.squareThreshold) && this.node.video.videoWidth <= this.node.video.videoHeight) ||
-          (this.node.video.videoHeight > (this.node.video.videoWidth * this.squareThreshold) && this.node.video.videoHeight <= this.node.video.videoWidth)
+          (this.node.content.videoWidth > (this.node.content.videoHeight * this.squareThreshold) && this.node.content.videoWidth <= this.node.content.videoHeight) ||
+          (this.node.content.videoHeight > (this.node.content.videoWidth * this.squareThreshold) && this.node.content.videoHeight <= this.node.content.videoWidth)
         )
       ) {
 
         mediaData.gridItem.orientation('square');
 
-      } else if (this.node.video.videoWidth > this.node.video.videoHeight) {
+      } else if (this.node.content.videoWidth > this.node.content.videoHeight) {
 
         mediaData.gridItem.orientation('landscape');
 
-      } else if (this.node.video.videoWidth < this.node.video.videoHeight) {
+      } else if (this.node.content.videoWidth < this.node.content.videoHeight) {
 
         mediaData.gridItem.orientation('portrait');
 
       }
 
       applyCSSVar('--GridItem__aspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
+
+      mediaData.gridItem.size();
 
       this.node.video.classList.add('Video__loaded');
 

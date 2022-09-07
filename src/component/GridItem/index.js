@@ -142,6 +142,16 @@ export const GridItem = function(mediaData) {
 
   }
 
+  this.size = () => {
+
+    let rect = this.node.gridItem.getBoundingClientRect();
+
+    applyCSSVar('--GridItem__width', rect.width, this.node.gridItem);
+
+    applyCSSVar('--GridItem__height', rect.height, this.node.gridItem);
+
+  }
+
   this.render = () => {
 
     switch (mediaData.type) {

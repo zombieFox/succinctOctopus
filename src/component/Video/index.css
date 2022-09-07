@@ -1,7 +1,12 @@
 .Video {
   width: 100%;
-  object-fit: cover;
   display: none;
+  position: relative;
+}
+
+.Video__content {
+  width: 100%;
+  object-fit: cover;
 }
 
 .Video:focus {
@@ -9,5 +14,30 @@
 }
 
 .Video__loaded {
-  display: block;
+  display: flex;
+}
+
+:root {
+  --Video__progressPadding: 10;
+  --Video__progressSize: 4;
+}
+
+.Video__progress {
+  display: flex;
+  position: absolute;
+  bottom: calc((var(--Video__progressPadding) + (var(--Grid__radiusCount) / 2)) * 0.1%);
+  left: calc((var(--Video__progressPadding) + (var(--Grid__radiusCount) / 2)) * 0.1%);
+  width: calc(100% - (((var(--Video__progressPadding) + (var(--Grid__radiusCount) / 2)) * 2) * 0.1%));
+  height: calc((var(--Video__progressSize) - 2) * 1px);
+}
+
+.Grid__square .Video__progress {
+}
+
+.Video__bar {
+  background-color: hsla(var(--Theme__accent5H), calc(var(--Theme__accent5S) * 1%), calc(var(--Theme__accent5L) * 1%), 0.8);
+  border-radius: calc(var(--Video__progressSize) * 1px);
+  width: calc(var(--Video__progress) * 1%);
+  height: 100%;
+  mix-blend-mode: luminosity;
 }
