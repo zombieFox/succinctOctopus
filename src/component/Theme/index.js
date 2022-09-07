@@ -1,3 +1,4 @@
+import { app } from '../../';
 import { config } from '../../config';
 import { KeyboardShortcut } from '../KeyboardShortcut';
 import { applyCSSVar } from '../../utility/applyCSSVar';
@@ -116,6 +117,16 @@ export const Theme = function() {
         this.toggleDark();
 
         this.style();
+
+        if (config.theme.dark) {
+
+          app.message.render('DARK MODE');
+
+        } else {
+
+          app.message.render('LIGHT MODE');
+
+        }
 
       }
     });
