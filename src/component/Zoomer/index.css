@@ -75,6 +75,7 @@
   min-height: calc(var(--Zoomer__mediaItemHeight) * 1px);
   transform: translate(calc(var(--Zoomer__magnificationX) * 1px), calc(var(--Zoomer__magnificationY) * 1px));
   transition: filter var(--Theme__transitionFastEase);
+  overflow: hidden;
 }
 
 .Zoomer .Image,

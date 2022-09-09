@@ -298,7 +298,7 @@ export const Zoomer = function(grid) {
         case 'mp4':
         case 'webm':
 
-          this.node.mediaItem = new Video(this.mediaItemInZoom);
+          this.node.mediaItem = new Video({ mediaData: this.mediaItemInZoom });
 
           break;
 

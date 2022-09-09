@@ -5,14 +5,17 @@ import { applyCSSVar } from '../../utility/applyCSSVar';
 
 import './index.css';
 
-export const Video = function(mediaData) {
+export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   this.node = {
     video: node('div|class:Video'),
     content: node('video|class:Video__content,loop,muted'),
     source: node('source'),
+    scrub: node('div|class:Video__scrubArea'),
     progress: node('div|class:Video__progress'),
+    track: node('div|class:Video__track'),
     bar: node('div|class:Video__bar'),
+    dot: node('div|class:Video__dot'),
   }
 
   this.play = () => {
@@ -131,9 +134,19 @@ export const Video = function(mediaData) {
 
     this.node.content.appendChild(this.node.source);
 
-    this.node.progress.appendChild(this.node.bar);
+    if (scrub) {
 
-    this.node.video.appendChild(this.node.progress);
+      this.node.progress.appendChild(this.node.track);
+      
+      this.node.bar.appendChild(this.node.dot);
+
+      this.node.progress.appendChild(this.node.bar);
+
+      this.node.video.appendChild(this.node.progress);
+
+      this.node.video.appendChild(this.node.scrub);
+
+    }
 
     this.node.content.muted = true;
 
@@ -157,11 +170,13 @@ export const Video = function(mediaData) {
 
   this.scrub = (event) => {
 
-    let mediaItemLeftPosition = mediaData.gridItem.getNode().offsetLeft;
+    let padding = 20;
 
-    let cursorPostionX = event.clientX - mediaItemLeftPosition;
+    let rect = mediaData.gridItem.node.mediaItem.node.scrub.getBoundingClientRect();
 
-    this.node.content.currentTime = cursorPostionX / mediaData.gridItem.getNode().clientWidth * this.node.content.duration;
+    let cursorPostionX = event.clientX - rect.left;
+
+    this.node.content.currentTime = cursorPostionX / rect.width * this.node.content.duration;
 
   }
 
@@ -195,7 +210,13 @@ export const Video = function(mediaData) {
 
     this.node.content.addEventListener('mousemove', (event) => {
 
-      if (event.metaKey) { this.scrub(event); }
+      if (event.metaKey) {
+
+        this.scrub(event);
+
+        this.progressBar(event);
+
+      }
 
     });
 

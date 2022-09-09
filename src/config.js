@@ -10,7 +10,7 @@ export const config = {
   grid: {
     view: {
       square: {
-        active: false,
+        active: true,
         size: { count: 4, default: 4, min: 2, max: 100, increment: 1 },
       },
       grid: {
@@ -26,7 +26,7 @@ export const config = {
         size: { count: 36, default: 36, min: 6, max: 100, increment: 1 },
       },
       solo: {
-        active: true,
+        active: false,
         size: { count: 4, default: 4, min: 3, max: 100, increment: 1 },
       },
     },
