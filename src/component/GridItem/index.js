@@ -87,7 +87,7 @@ export const GridItem = function(mediaData) {
 
     this.node.gridItem.addEventListener('click', event => {
 
-      if (!event.metaKey && !event.shiftKey) {
+      if (!event.altKey && !event.shiftKey) {
 
         switch (app.grid.view.getActive().id) {
 

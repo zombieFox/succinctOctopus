@@ -914,7 +914,7 @@ export const Grid = function() {
 
       this.mediaInView();
 
-      if (event.metaKey) {
+      if (event.altKey) {
 
         if (config.grid.view.solo.active) {
 

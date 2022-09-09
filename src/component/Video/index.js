@@ -137,7 +137,7 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
     if (scrub) {
 
       this.node.progress.appendChild(this.node.track);
-      
+
       this.node.bar.appendChild(this.node.dot);
 
       this.node.progress.appendChild(this.node.bar);
@@ -192,7 +192,7 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
     this.node.content.addEventListener('click', () => {
 
-      if (event.metaKey) {
+      if (event.altKey) {
 
         this.togglePlay();
 
@@ -210,7 +210,7 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
     this.node.content.addEventListener('mousemove', (event) => {
 
-      if (event.metaKey) {
+      if (event.altKey) {
 
         this.scrub(event);
 
