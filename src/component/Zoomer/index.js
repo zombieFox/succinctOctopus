@@ -307,7 +307,7 @@ export const Zoomer = function(grid) {
         case 'jpeg':
         case 'png':
 
-          this.node.mediaItem = new Image(this.mediaItemInZoom);
+          this.node.mediaItem = new Image({ mediaData: this.mediaItemInZoom });
 
           break;
 

@@ -3,10 +3,11 @@ import { applyCSSVar } from '../../utility/applyCSSVar';
 
 import './index.css';
 
-export const Image = function(mediaData) {
+export const Image = function({ mediaData = null, scrub = false } = {}) {
 
   this.node = {
-    image: node('img|class:Image')
+    image: node('div|class:Image'),
+    content: node('img|class:Image__content'),
   }
 
   this.gcd = (w, h) => {
@@ -15,15 +16,17 @@ export const Image = function(mediaData) {
 
   this.aspectRatio = () => {
 
-    const gcd = this.gcd(this.node.image.naturalWidth, this.node.image.naturalHeight);
+    const gcd = this.gcd(this.node.content.naturalWidth, this.node.content.naturalHeight);
 
-    return `${this.node.image.naturalWidth / gcd} / ${this.node.image.naturalHeight / gcd}`;
+    return `${this.node.content.naturalWidth / gcd} / ${this.node.content.naturalHeight / gcd}`;
 
   }
 
   this.render = () => {
 
-    this.node.image.src = `${mediaData.path}.${mediaData.type}`;
+    this.node.content.src = `${mediaData.path}.${mediaData.type}`;
+
+    this.node.image.appendChild(this.node.content);
 
   }
 
@@ -31,23 +34,23 @@ export const Image = function(mediaData) {
 
   this.bind = () => {
 
-    this.node.image.onload = () => {
+    this.node.content.onload = () => {
 
       if (
-        (this.node.image.naturalWidth == this.node.image.naturalHeight) ||
+        (this.node.content.naturalWidth == this.node.content.naturalHeight) ||
         (
-          (this.node.image.naturalWidth > (this.node.image.naturalHeight * this.squareThreshold) && this.node.image.naturalWidth <= this.node.image.naturalHeight) ||
-          (this.node.image.naturalHeight > (this.node.image.naturalWidth * this.squareThreshold) && this.node.image.naturalHeight <= this.node.image.naturalWidth)
+          (this.node.content.naturalWidth > (this.node.content.naturalHeight * this.squareThreshold) && this.node.content.naturalWidth <= this.node.content.naturalHeight) ||
+          (this.node.content.naturalHeight > (this.node.content.naturalWidth * this.squareThreshold) && this.node.content.naturalHeight <= this.node.content.naturalWidth)
         )
       ) {
 
         mediaData.gridItem.orientation('square');
 
-      } else if (this.node.image.naturalWidth > this.node.image.naturalHeight) {
+      } else if (this.node.content.naturalWidth > this.node.content.naturalHeight) {
 
         mediaData.gridItem.orientation('landscape');
 
-      } else if (this.node.image.naturalWidth < this.node.image.naturalHeight) {
+      } else if (this.node.content.naturalWidth < this.node.content.naturalHeight) {
 
         mediaData.gridItem.orientation('portrait');
 
@@ -57,13 +60,13 @@ export const Image = function(mediaData) {
 
       mediaData.gridItem.size();
 
-      this.node.image.classList.add('Image__loaded');
+      this.node.content.classList.add('Image__loaded');
 
     }
 
   }
 
-  this.getNode = () => this.node.image;
+  this.getNode = () => this.node.content;
 
   this.render();
 

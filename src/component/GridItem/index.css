@@ -20,7 +20,7 @@
   height: 100%;
 }
 
-.Grid__square .GridItem .Image,
+.Grid__square .GridItem .Image__content,
 .Grid__square .GridItem .Video__content {
   aspect-ratio: var(--GridItem__aspectRatio);
   width: fit-content;
@@ -41,18 +41,18 @@
   flex-direction: row;
 }
 
-.Grid__square .GridItem.GridItem__square .Image,
+.Grid__square .GridItem.GridItem__square .Image__content,
 .Grid__square .GridItem.GridItem__square .Video__content {
   width: 100%;
 }
 
-.Grid__square .GridItem.GridItem__portrait .Image,
+.Grid__square .GridItem.GridItem__portrait .Image__content,
 .Grid__square .GridItem.GridItem__portrait .Video__content {
   width: 100%;
   transform: translateY(calc(var(--GridItem__panY) * 1px));
 }
 
-.Grid__square .GridItem.GridItem__landscape .Image,
+.Grid__square .GridItem.GridItem__landscape .Image__content,
 .Grid__square .GridItem.GridItem__landscape .Video__content {
   height: 100%;
   transform: translateX(calc(var(--GridItem__panX) * 1px));

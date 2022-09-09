@@ -172,7 +172,7 @@ export const GridItem = function(mediaData) {
 
         this.type = 'image';
 
-        this.node.mediaItem = new Image(mediaData);
+        this.node.mediaItem = new Image({ mediaData: mediaData });
 
         break;
 

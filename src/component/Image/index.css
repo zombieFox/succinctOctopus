@@ -1,9 +1,22 @@
 .Image {
   width: 100%;
-  object-fit: cover;
   display: none;
+  position: relative;
 }
 
-.Image__loaded {
-  display: block;
+.Image__content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.Image__content:focus {
+  outline: none;
+}
+
+.Image.Image__loaded {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

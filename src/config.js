@@ -1,7 +1,7 @@
 export const config = {
 
   media: {
-    image: false,
+    image: true,
     video: true,
     autoPlay: false,
     randomOrder: true,
