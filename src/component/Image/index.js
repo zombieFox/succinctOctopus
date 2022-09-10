@@ -60,13 +60,13 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
       mediaData.gridItem.size();
 
-      this.node.content.classList.add('Image__loaded');
+      this.node.image.classList.add('Image__loaded');
 
     }
 
   }
 
-  this.getNode = () => this.node.content;
+  this.getNode = () => this.node.image;
 
   this.render();
 
