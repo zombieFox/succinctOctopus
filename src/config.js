@@ -3,7 +3,7 @@ export const config = {
   media: {
     image: true,
     video: true,
-    autoPlay: true,
+    autoPlay: false,
     randomOrder: true,
   },
 
@@ -41,7 +41,7 @@ export const config = {
       count: 2,
       default: 2,
       min: 0,
-      max: 1000,
+      max: 50,
       increment: 1,
     },
   },

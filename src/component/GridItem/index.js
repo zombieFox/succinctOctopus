@@ -55,9 +55,9 @@ export const GridItem = function(mediaData) {
 
     let gridItemHeight = this.node.gridItem.clientHeight;
 
-    let mediaItemWidth = this.node.mediaItem.getNode().clientWidth;
+    let mediaItemWidth = this.node.mediaItem.node.content.clientWidth;
 
-    let mediaItemHeight = this.node.mediaItem.getNode().clientHeight;
+    let mediaItemHeight = this.node.mediaItem.node.content.clientHeight;
 
     let overflowX = (mediaItemWidth - gridItemWidth) / 2;
 
@@ -81,13 +81,13 @@ export const GridItem = function(mediaData) {
 
     this.node.gridItem.addEventListener('mousemove', event => {
 
-      if (event.shiftKey) { this.pan.move(event); }
+      if (event.shiftKey && config.grid.view.square.active) { this.pan.move(event); }
 
     });
 
     this.node.gridItem.addEventListener('click', event => {
 
-      if (!event.metaKey && !event.shiftKey) {
+      if (!event.altKey && !event.shiftKey) {
 
         switch (app.grid.view.getActive().id) {
 
@@ -142,6 +142,16 @@ export const GridItem = function(mediaData) {
 
   }
 
+  this.size = () => {
+
+    let rect = this.node.gridItem.getBoundingClientRect();
+
+    applyCSSVar('----GridItem__mediaWidth', rect.width, this.node.gridItem);
+
+    applyCSSVar('--GridItem__mediaHeight', rect.height, this.node.gridItem);
+
+  }
+
   this.render = () => {
 
     switch (mediaData.type) {
@@ -151,7 +161,7 @@ export const GridItem = function(mediaData) {
 
         this.type = 'video';
 
-        this.node.mediaItem = new Video(mediaData);
+        this.node.mediaItem = new Video({ mediaData: mediaData, scrub: true });
 
         break;
 
@@ -162,7 +172,7 @@ export const GridItem = function(mediaData) {
 
         this.type = 'image';
 
-        this.node.mediaItem = new Image(mediaData);
+        this.node.mediaItem = new Image({ mediaData: mediaData });
 
         break;
 

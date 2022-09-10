@@ -22,13 +22,13 @@ export const Grid = function() {
 
   this.style = () => {
 
-    applyCSSVar('--Grid__gapCount', config.grid.gap.count);
+    applyCSSVar('--Grid__gapCount', config.grid.gap.count, this.node.grid);
 
-    applyCSSVar('--Grid__radiusCount', config.grid.radius.count);
+    applyCSSVar('--Grid__radiusCount', config.grid.radius.count, this.node.grid);
 
     this.view.option.forEach(gridViewItem => {
 
-      applyCSSVar(`--Grid__${gridViewItem.id}SizeCount`, gridViewItem.size.count);
+      applyCSSVar(`--Grid__${gridViewItem.id}SizeCount`, gridViewItem.size.count, this.node.grid);
 
       this.node.grid.classList.remove(`Grid__${gridViewItem.id}`);
 
@@ -458,6 +458,18 @@ export const Grid = function() {
 
   }
 
+  this.gridItemSize = () => {
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      mediaItem.gridItem.size();
+
+    });
+
+    console.log(`[Grid] grid item size`);
+
+  }
+
   this.bind = () => {
 
     let reset = new KeyboardShortcut({
@@ -713,6 +725,8 @@ export const Grid = function() {
 
         this.style();
 
+        this.gridItemSize();
+
         app.message.render(this.view.getActive().id.toUpperCase());
 
       }
@@ -730,6 +744,8 @@ export const Grid = function() {
 
         this.style();
 
+        this.gridItemSize();
+
         app.message.render(this.view.getActive().id.toUpperCase());
 
       }
@@ -744,6 +760,8 @@ export const Grid = function() {
         this.magnificationHide();
 
         this.style();
+
+        this.gridItemSize();
 
         app.message.render(this.view.option[0].id.toUpperCase());
 
@@ -760,6 +778,8 @@ export const Grid = function() {
 
         this.style();
 
+        this.gridItemSize();
+
         app.message.render(this.view.option[1].id.toUpperCase());
 
       }
@@ -774,6 +794,8 @@ export const Grid = function() {
         this.magnificationHide();
 
         this.style();
+
+        this.gridItemSize();
 
         app.message.render(this.view.option[2].id.toUpperCase());
 
@@ -790,6 +812,8 @@ export const Grid = function() {
 
         this.style();
 
+        this.gridItemSize();
+
         app.message.render(this.view.option[3].id.toUpperCase());
 
       }
@@ -804,6 +828,8 @@ export const Grid = function() {
         this.mediaInView();
 
         this.style();
+
+        this.gridItemSize();
 
         app.message.render(this.view.option[4].id.toUpperCase());
 
@@ -892,7 +918,7 @@ export const Grid = function() {
 
       this.mediaInView();
 
-      if (event.metaKey) {
+      if (event.altKey) {
 
         if (config.grid.view.solo.active) {
 
