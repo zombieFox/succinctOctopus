@@ -13,9 +13,7 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
     source: node('source'),
     scrub: node('div|class:Video__scrubArea'),
     progress: node('div|class:Video__progress'),
-    track: node('div|class:Video__track'),
     bar: node('div|class:Video__bar'),
-    dot: node('div|class:Video__dot'),
   }
 
   this.play = () => {
@@ -135,10 +133,6 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
     this.node.content.appendChild(this.node.source);
 
     if (scrub) {
-
-      this.node.progress.appendChild(this.node.track);
-
-      this.node.bar.appendChild(this.node.dot);
 
       this.node.progress.appendChild(this.node.bar);
 

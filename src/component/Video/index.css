@@ -33,24 +33,20 @@
 }
 
 :root {
-  --Video__progress: 0;
-  --Video__progressPadding: 6;
+  --Video__progressPadding: 4;
   --Video__progressSize: 2;
-  --Video__progressBarSize: calc(var(--Video__progressSize) / 2);
-  --Video__progressDotSize: calc(var(--Video__progressSize) * 3);
 }
 
 .Video__progress {
   position: absolute;
-  background-color: hsla(var(--Theme__primary1H), calc(var(--Theme__primary1S) * 1%), calc(var(--Theme__primary1L) * 1%), 0.6);
+  background-color: hsla(var(--Theme__primary1H), calc(var(--Theme__primary1S) * 1%), calc(var(--Theme__primary1L) * 1%), 0.5);
   padding: calc((var(--Video__progressPadding) / 10) * 1em);
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
   bottom: 0;
   left: 0;
   width: 100%;
-  min-width: calc(var(--Video__progressSize) * 1px);
   opacity: 0;
   transition: opacity var(--Theme__transitionMediumEase);
   z-index: 3;
@@ -60,38 +56,10 @@
   opacity: 1;
 }
 
-.Video__track {
-  background-color: hsla(var(--Theme__primary6H), calc(var(--Theme__primary6S) * 1%), calc(var(--Theme__primary6L) * 1%), 0.2);
-  border-radius: calc(var(--Video__progressSize) * 1px);
-  width: 100%;
-  height: calc(var(--Video__progressSize) * 1px);
-  z-index: 1;
-}
-
 .Video__bar {
   background-color: var(--Theme__primary900);
   border-radius: calc(var(--Video__progressSize) * 1px);
-  position: absolute;
-  left: calc((var(--Video__progressPadding) / 10) * 1em);
-  width: calc((var(--Video__progress) * 1%) - (((var(--Video__progressPadding) * 2) / 10) * 1em));
+  width: calc(var(--Video__progress) * 1%);
   height: calc(var(--Video__progressSize) * 1px);
   z-index: 2;
-}
-
-.Video__dot {
-  position: absolute;
-  top: 50%;
-  right: 0;
-}
-
-.Video__dot:after {
-  content: "";
-  background-color: var(--Theme__primary900);
-  border-radius: 100%;
-  width: calc(var(--Video__progressDotSize) * 1px);
-  height: calc(var(--Video__progressDotSize) * 1px);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
