@@ -146,7 +146,7 @@ export const GridItem = function(mediaData) {
 
     let rect = this.node.gridItem.getBoundingClientRect();
 
-    applyCSSVar('----GridItem__mediaWidth', rect.width, this.node.gridItem);
+    applyCSSVar('--GridItem__mediaWidth', rect.width, this.node.gridItem);
 
     applyCSSVar('--GridItem__mediaHeight', rect.height, this.node.gridItem);
 
