@@ -120,9 +120,9 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   this.aspectRatio = () => {
 
-    const gcd = this.gcd(this.node.content.videoWidth, this.node.content.videoHeight);
+    const gcd = this.gcd(this.naturalWidth, this.naturalHeight);
 
-    return `${this.node.content.videoWidth / gcd} / ${this.node.content.videoHeight / gcd}`;
+    return `${this.naturalWidth / gcd} / ${this.naturalHeight / gcd}`;
 
   }
 
@@ -182,6 +182,12 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   this.squareThreshold = 0.85;
 
+  this.orientation = false;
+
+  this.naturalWidth = false;
+
+  this.naturalHeight = false;
+
   this.bind = () => {
 
     this.node.content.addEventListener('click', () => {
@@ -222,27 +228,33 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
     this.node.content.addEventListener('loadedmetadata', () => {
 
+      this.naturalWidth = this.node.content.videoWidth;
+
+      this.naturalHeight = this.node.content.videoHeight;
+
       if (
-        (this.node.content.videoWidth == this.node.content.videoHeight) ||
+        (this.naturalWidth == this.naturalHeight) ||
         (
-          (this.node.content.videoWidth > (this.node.content.videoHeight * this.squareThreshold) && this.node.content.videoWidth <= this.node.content.videoHeight) ||
-          (this.node.content.videoHeight > (this.node.content.videoWidth * this.squareThreshold) && this.node.content.videoHeight <= this.node.content.videoWidth)
+          (this.naturalWidth > (this.naturalHeight * this.squareThreshold) && this.naturalWidth <= this.naturalHeight) ||
+          (this.naturalHeight > (this.naturalWidth * this.squareThreshold) && this.naturalHeight <= this.naturalWidth)
         )
       ) {
 
-        mediaData.gridItem.orientation('square');
+        this.orientation = 'square';
 
-      } else if (this.node.content.videoWidth > this.node.content.videoHeight) {
+      } else if (this.naturalWidth > this.naturalHeight) {
 
-        mediaData.gridItem.orientation('landscape');
+        this.orientation = 'landscape';
 
-      } else if (this.node.content.videoWidth < this.node.content.videoHeight) {
+      } else if (this.naturalWidth < this.naturalHeight) {
 
-        mediaData.gridItem.orientation('portrait');
+        this.orientation = 'portrait';
 
       }
 
-      applyCSSVar('--GridItem__aspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
+      mediaData.gridItem.orientation(this.orientation);
+
+      applyCSSVar('--GridItem__mediaAspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
 
       mediaData.gridItem.size();
 

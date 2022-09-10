@@ -16,9 +16,9 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
   this.aspectRatio = () => {
 
-    const gcd = this.gcd(this.node.content.naturalWidth, this.node.content.naturalHeight);
+    const gcd = this.gcd(this.naturalWidth, this.naturalHeight);
 
-    return `${this.node.content.naturalWidth / gcd} / ${this.node.content.naturalHeight / gcd}`;
+    return `${this.naturalWidth / gcd} / ${this.naturalHeight / gcd}`;
 
   }
 
@@ -32,31 +32,43 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
   this.squareThreshold = 0.85;
 
+  this.orientation = false;
+
+  this.naturalWidth = false;
+
+  this.naturalHeight = false;
+
   this.bind = () => {
 
     this.node.content.onload = () => {
 
+      this.naturalWidth = this.node.content.naturalWidth;
+
+      this.naturalHeight = this.node.content.naturalHeight;
+
       if (
-        (this.node.content.naturalWidth == this.node.content.naturalHeight) ||
+        (this.naturalWidth == this.naturalHeight) ||
         (
-          (this.node.content.naturalWidth > (this.node.content.naturalHeight * this.squareThreshold) && this.node.content.naturalWidth <= this.node.content.naturalHeight) ||
-          (this.node.content.naturalHeight > (this.node.content.naturalWidth * this.squareThreshold) && this.node.content.naturalHeight <= this.node.content.naturalWidth)
+          (this.naturalWidth > (this.naturalHeight * this.squareThreshold) && this.naturalWidth <= this.naturalHeight) ||
+          (this.naturalHeight > (this.naturalWidth * this.squareThreshold) && this.naturalHeight <= this.naturalWidth)
         )
       ) {
 
-        mediaData.gridItem.orientation('square');
+        this.orientation = 'square';
 
-      } else if (this.node.content.naturalWidth > this.node.content.naturalHeight) {
+      } else if (this.naturalWidth > this.naturalHeight) {
 
-        mediaData.gridItem.orientation('landscape');
+        this.orientation = 'landscape';
 
-      } else if (this.node.content.naturalWidth < this.node.content.naturalHeight) {
+      } else if (this.naturalWidth < this.naturalHeight) {
 
-        mediaData.gridItem.orientation('portrait');
+        this.orientation = 'portrait';
 
       }
 
-      applyCSSVar('--GridItem__aspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
+      mediaData.gridItem.orientation(this.orientation);
+
+      applyCSSVar('--GridItem__mediaAspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
 
       mediaData.gridItem.size();
 

@@ -470,6 +470,18 @@ export const Grid = function() {
 
   }
 
+  this.gridItemMax = () => {
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      mediaItem.gridItem.max();
+
+    });
+
+    console.log(`[Grid] grid item max`);
+
+  }
+
   this.bind = () => {
 
     let reset = new KeyboardShortcut({
@@ -683,6 +695,8 @@ export const Grid = function() {
 
             this.autoPlayVideoInView();
 
+            this.gridItemMax();
+
             break;
 
         }
@@ -706,6 +720,8 @@ export const Grid = function() {
 
             this.autoPlayVideoInView();
 
+            this.gridItemMax();
+
             break;
 
         }
@@ -727,6 +743,8 @@ export const Grid = function() {
 
         this.gridItemSize();
 
+        this.gridItemMax();
+
         app.message.render(this.view.getActive().id.toUpperCase());
 
       }
@@ -746,6 +764,8 @@ export const Grid = function() {
 
         this.gridItemSize();
 
+        this.gridItemMax();
+
         app.message.render(this.view.getActive().id.toUpperCase());
 
       }
@@ -762,6 +782,8 @@ export const Grid = function() {
         this.style();
 
         this.gridItemSize();
+
+        this.gridItemMax();
 
         app.message.render(this.view.option[0].id.toUpperCase());
 
@@ -780,6 +802,8 @@ export const Grid = function() {
 
         this.gridItemSize();
 
+        this.gridItemMax();
+
         app.message.render(this.view.option[1].id.toUpperCase());
 
       }
@@ -796,6 +820,8 @@ export const Grid = function() {
         this.style();
 
         this.gridItemSize();
+
+        this.gridItemMax();
 
         app.message.render(this.view.option[2].id.toUpperCase());
 
@@ -814,6 +840,8 @@ export const Grid = function() {
 
         this.gridItemSize();
 
+        this.gridItemMax();
+
         app.message.render(this.view.option[3].id.toUpperCase());
 
       }
@@ -830,6 +858,8 @@ export const Grid = function() {
         this.style();
 
         this.gridItemSize();
+
+        this.gridItemMax();
 
         app.message.render(this.view.option[4].id.toUpperCase());
 

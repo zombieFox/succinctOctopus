@@ -77,6 +77,31 @@ export const GridItem = function(mediaData) {
 
   }
 
+  this.max = () => {
+
+    let windowWidth = window.innerWidth;
+
+    let windowHeight = window.innerHeight;
+
+    this.node.gridItem.classList.remove('GridItem__maxHeight');
+
+    this.node.gridItem.classList.remove('GridItem__maxWidth');
+
+    if (
+      (windowWidth / mediaData.gridItem.node.mediaItem.naturalWidth) <
+      (windowHeight / mediaData.gridItem.node.mediaItem.naturalHeight)
+    ) {
+
+      this.node.gridItem.classList.add('GridItem__maxWidth');
+
+    } else {
+
+      this.node.gridItem.classList.add('GridItem__maxHeight');
+
+    }
+
+  }
+
   this.bind = () => {
 
     this.node.gridItem.addEventListener('mousemove', event => {
@@ -105,6 +130,8 @@ export const GridItem = function(mediaData) {
             app.grid.style();
 
             this.node.gridItem.scrollIntoView();
+
+            this.max();
 
             app.message.render(app.grid.view.option[4].id.toUpperCase());
 

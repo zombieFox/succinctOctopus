@@ -22,7 +22,7 @@
 
 .Grid__square .GridItem .Image__content,
 .Grid__square .GridItem .Video__content {
-  aspect-ratio: var(--GridItem__aspectRatio);
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
   width: fit-content;
   height: fit-content;
   transform-origin: center;
@@ -77,7 +77,7 @@
 
 .Grid__flex .GridItem {
   max-height: calc(var(--Grid__flexSizeCount) * 1vmin);
-  aspect-ratio: var(--GridItem__aspectRatio);
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
 }
 
 .Grid__flex .GridItem {
@@ -86,49 +86,21 @@
 
 .Grid__column .GridItem {
   width: 100%;
-  aspect-ratio: var(--GridItem__aspectRatio);
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
 }
 
 .Grid__solo .GridItem {
   max-width: 100%;
   max-height: 100%;
-  aspect-ratio: var(--GridItem__aspectRatio);
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
   scroll-snap-align: center;
   position: relative;
 }
 
-/* @media (orientation: landscape) {
-  .Grid__solo .GridItem.GridItem__square {
-    height: 100%;
-  }
+.Grid__solo .GridItem.GridItem__maxWidth {
+  width: 100%;
 }
 
-@media (orientation: portrait) {
-  .Grid__solo .GridItem.GridItem__square {
-    width: 100%;
-  }
+.Grid__solo .GridItem.GridItem__maxHeight {
+  height: 100%;
 }
-
-@media (orientation: landscape) {
-  .Grid__solo .GridItem.GridItem__portrait {
-    height: 100%;
-  }
-}
-
-@media (orientation: portrait) {
-  .Grid__solo .GridItem.GridItem__portrait {
-    width: 100%;
-  }
-}
-
-@media (orientation: landscape) {
-  .Grid__solo .GridItem.GridItem__landscape {
-    height: 100%;
-  }
-}
-
-@media (orientation: portrait) {
-  .Grid__solo .GridItem.GridItem__landscape {
-    width: 100%;
-  }
-} */
