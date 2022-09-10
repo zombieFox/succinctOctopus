@@ -29,6 +29,16 @@ export const Theme = function() {
         end: config.theme.primary.contrast.start
       };
 
+      config.theme.accent.contrast = {
+        start: config.theme.accent.contrast.end,
+        end: config.theme.accent.contrast.start
+      };
+
+      config.theme.text.contrast = {
+        start: config.theme.text.contrast.end,
+        end: config.theme.text.contrast.start
+      };
+
     } else {
 
       config.theme.primary.contrast = {
@@ -36,36 +46,14 @@ export const Theme = function() {
         end: config.theme.primary.contrast.start
       };
 
-    }
-
-    if (config.theme.dark) {
-
-      config.theme.text.contrast = {
-        start: config.theme.text.contrast.end,
-        end: config.theme.text.contrast.start
-      };
-
-    } else {
-
-      config.theme.text.contrast = {
-        start: config.theme.text.contrast.end,
-        end: config.theme.text.contrast.start
-      };
-
-    }
-
-    if (config.theme.dark) {
-
       config.theme.accent.contrast = {
         start: config.theme.accent.contrast.end,
         end: config.theme.accent.contrast.start
       };
 
-    } else {
-
-      config.theme.accent.contrast = {
-        start: config.theme.accent.contrast.end,
-        end: config.theme.accent.contrast.start
+      config.theme.text.contrast = {
+        start: config.theme.text.contrast.end,
+        end: config.theme.text.contrast.start
       };
 
     }
