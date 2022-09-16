@@ -18,8 +18,6 @@ export const Grid = function() {
     grid: node('div|class:Grid')
   }
 
-  this.zoomer = null;
-
   this.style = () => {
 
     applyCSSVar('--Grid__gapCount', config.grid.gap.count, this.node.grid);
@@ -550,14 +548,14 @@ export const Grid = function() {
         switch (this.view.getActive().id) {
 
           case 'square':
-            this.view.size.down();
+            this.view.size.up();
             this.style();
             this.panReset();
             app.message.render(`${this.view.option[0].id.toUpperCase()} ${config.grid.view.square.size.count}`);
             break;
 
           case 'grid':
-            this.view.size.down();
+            this.view.size.up();
             this.style();
             this.panReset();
             app.message.render(`${this.view.option[1].id.toUpperCase()} ${config.grid.view.grid.size.count}`);
@@ -595,14 +593,14 @@ export const Grid = function() {
         switch (this.view.getActive().id) {
 
           case 'square':
-            this.view.size.up();
+            this.view.size.down();
             this.style();
             this.panReset();
             app.message.render(`${this.view.option[0].id.toUpperCase()} ${config.grid.view.square.size.count}`);
             break;
 
           case 'grid':
-            this.view.size.up();
+            this.view.size.down();
             this.style();
             this.panReset();
             app.message.render(`${this.view.option[1].id.toUpperCase()} ${config.grid.view.grid.size.count}`);
@@ -944,6 +942,17 @@ export const Grid = function() {
 
     });
 
+    window.addEventListener('resize', () => {
+
+      if (config.grid.view.solo.active) {
+
+        this.gridItemMax();
+
+      };
+
+    });
+
+
     window.addEventListener('mousemove', event => {
 
       this.mediaInView();
@@ -1009,6 +1018,8 @@ export const Grid = function() {
 
       mediaData.gridItem = new GridItem(mediaData);
 
+      mediaData.gridItem.max();
+
       this.node.grid.append(mediaData.gridItem.getNode());
 
       this.allMediaItem.push(mediaData);
@@ -1022,6 +1033,8 @@ export const Grid = function() {
   }
 
   this.getNode = () => this.node.grid;
+
+  this.zoomer = new Zoomer(this);
 
   this.render();
 

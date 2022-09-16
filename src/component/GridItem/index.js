@@ -151,6 +151,8 @@ export const GridItem = function(mediaData) {
 
             app.grid.magnificationHide();
 
+            app.grid.gridItemMax();
+
             document.documentElement.scrollTop = app.grid.view.last.scrollY;
 
             app.grid.view.last.id = 'solo';
