@@ -3,7 +3,7 @@ export const config = {
   media: {
     image: true,
     video: true,
-    autoPlay: false,
+    autoPlay: true,
     randomOrder: true,
   },
 

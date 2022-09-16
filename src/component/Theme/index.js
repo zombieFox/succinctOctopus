@@ -22,51 +22,40 @@ export const Theme = function() {
 
     }
 
-    if (config.theme.dark) {
+  }
 
-      config.theme.primary.contrast = {
-        start: config.theme.primary.contrast.end,
-        end: config.theme.primary.contrast.start
-      };
+  this.reverseContrast = (colorObject) => {
 
-      config.theme.accent.contrast = {
-        start: config.theme.accent.contrast.end,
-        end: config.theme.accent.contrast.start
-      };
+    const newColorObject = {
+      h: colorObject.h,
+      s: colorObject.s,
+      contrast: {
+        start: colorObject.contrast.end,
+        end: colorObject.contrast.start
+      },
+      shades: colorObject.shades
+    };
 
-      config.theme.text.contrast = {
-        start: config.theme.text.contrast.end,
-        end: config.theme.text.contrast.start
-      };
-
-    } else {
-
-      config.theme.primary.contrast = {
-        start: config.theme.primary.contrast.end,
-        end: config.theme.primary.contrast.start
-      };
-
-      config.theme.accent.contrast = {
-        start: config.theme.accent.contrast.end,
-        end: config.theme.accent.contrast.start
-      };
-
-      config.theme.text.contrast = {
-        start: config.theme.text.contrast.end,
-        end: config.theme.text.contrast.start
-      };
-
-    }
-
+    return newColorObject;
   }
 
   this.style = () => {
 
     applyCSSVar('--Theme__scale', config.theme.scale);
 
-    applyColorRangeCSSVar('--Theme__text', config.theme.text);
-    applyColorRangeCSSVar('--Theme__primary', config.theme.primary);
-    applyColorRangeCSSVar('--Theme__accent', config.theme.accent);
+    if (config.theme.dark) {
+
+      applyColorRangeCSSVar('--Theme__text', this.reverseContrast(config.theme.text));
+      applyColorRangeCSSVar('--Theme__primary', this.reverseContrast(config.theme.primary));
+      applyColorRangeCSSVar('--Theme__accent', this.reverseContrast(config.theme.accent));
+
+    } else {
+
+      applyColorRangeCSSVar('--Theme__text', config.theme.text);
+      applyColorRangeCSSVar('--Theme__primary', config.theme.primary);
+      applyColorRangeCSSVar('--Theme__accent', config.theme.accent);
+
+    }
 
     applyCSSVar('--Theme__transitionSpeedXFast', (config.theme.transition.speed.xfast / 100));
     applyCSSVar('--Theme__transitionSpeedFast', (config.theme.transition.speed.fast / 100));
