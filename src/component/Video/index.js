@@ -180,7 +180,7 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   }
 
-  this.squareThreshold = 0.85;
+  this.squareThreshold = 0.95;
 
   this.orientation = false;
 
