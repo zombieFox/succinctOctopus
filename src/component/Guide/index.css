@@ -13,20 +13,20 @@
 
 .Guide__toggle {
   background-color: hsla(var(--Theme__accent2H), calc(var(--Theme__accent2S) * 1%), calc(var(--Theme__accent2L) * 1%), 0.8);
-  color: var(--Theme__text100);
   border: 0;
   border-radius: 100%;
   padding: 1em;
+  color: var(--Theme__text100);
   position: absolute;
   bottom: 1em;
   right: 1em;
-  width: 3vmin;
-  height: 3vmin;
+  width: 2vmin;
+  height: 2vmin;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: all;
-  font-size: 1em;
+  font-size: 0.75em;
   line-height: 1;
   cursor: pointer;
 }
