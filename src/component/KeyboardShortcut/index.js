@@ -1,4 +1,5 @@
 export const KeyboardShortcut = function({
+  debug = false,
   keycode = false,
   ctrl = false,
   shift = false,
@@ -7,6 +8,8 @@ export const KeyboardShortcut = function({
 } = {}) {
 
   this.action = () => {
+
+    if (debug) { console.log(event.keyCode); };
 
     if (keycode) {
 
