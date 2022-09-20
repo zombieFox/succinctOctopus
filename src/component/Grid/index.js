@@ -693,8 +693,6 @@ export const Grid = function() {
 
             this.autoPlayVideoInView();
 
-            this.gridItemMax();
-
             break;
 
         }
@@ -718,8 +716,6 @@ export const Grid = function() {
 
             this.autoPlayVideoInView();
 
-            this.gridItemMax();
-
             break;
 
         }
@@ -739,10 +735,6 @@ export const Grid = function() {
 
         this.style();
 
-        this.gridItemSize();
-
-        this.gridItemMax();
-
         app.message.render(this.view.getActive().id.toUpperCase());
 
       }
@@ -760,10 +752,6 @@ export const Grid = function() {
 
         this.style();
 
-        this.gridItemSize();
-
-        this.gridItemMax();
-
         app.message.render(this.view.getActive().id.toUpperCase());
 
       }
@@ -778,10 +766,6 @@ export const Grid = function() {
         this.magnificationHide();
 
         this.style();
-
-        this.gridItemSize();
-
-        this.gridItemMax();
 
         app.message.render(this.view.option[0].id.toUpperCase());
 
@@ -798,10 +782,6 @@ export const Grid = function() {
 
         this.style();
 
-        this.gridItemSize();
-
-        this.gridItemMax();
-
         app.message.render(this.view.option[1].id.toUpperCase());
 
       }
@@ -816,10 +796,6 @@ export const Grid = function() {
         this.magnificationHide();
 
         this.style();
-
-        this.gridItemSize();
-
-        this.gridItemMax();
 
         app.message.render(this.view.option[2].id.toUpperCase());
 
@@ -836,10 +812,6 @@ export const Grid = function() {
 
         this.style();
 
-        this.gridItemSize();
-
-        this.gridItemMax();
-
         app.message.render(this.view.option[3].id.toUpperCase());
 
       }
@@ -854,10 +826,6 @@ export const Grid = function() {
         this.mediaInView();
 
         this.style();
-
-        this.gridItemSize();
-
-        this.gridItemMax();
 
         app.message.render(this.view.option[4].id.toUpperCase());
 
@@ -951,7 +919,6 @@ export const Grid = function() {
       };
 
     });
-
 
     window.addEventListener('mousemove', event => {
 

@@ -3,7 +3,7 @@ import { applyCSSVar } from '../../utility/applyCSSVar';
 
 import './index.css';
 
-export const Image = function({ mediaData = null, scrub = false } = {}) {
+export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = {}) {
 
   this.node = {
     image: node('div|class:Image'),
@@ -24,9 +24,11 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
   this.render = () => {
 
+    this.node.image.classList.add('Image__loading');
+
     this.node.content.src = `${mediaData.path}.${mediaData.type}`;
 
-    this.node.image.appendChild(this.node.content);
+    this.node.image.append(this.node.content);
 
   }
 
@@ -38,7 +40,9 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
   this.naturalHeight = false;
 
-  this.bind = () => {
+  this.loadError = false;
+
+  this.bind = ({ onLoadFunc }) => {
 
     this.node.content.onload = () => {
 
@@ -72,7 +76,19 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
       mediaData.gridItem.size();
 
+      this.node.image.classList.remove('Image__loading');
+
       this.node.image.classList.add('Image__loaded');
+
+      if (onLoadFunc) { onLoadFunc(); };
+
+    }
+
+    this.node.content.onerror = () => {
+
+      mediaData.gridItem.loadError();
+
+      this.loadError = true;
 
     }
 
@@ -82,6 +98,6 @@ export const Image = function({ mediaData = null, scrub = false } = {}) {
 
   this.render();
 
-  this.bind();
+  this.bind({ onLoadFunc: onLoadFunc });
 
 };

@@ -1,6 +1,5 @@
 .Image {
   width: 100%;
-  display: none;
   position: relative;
 }
 
@@ -9,14 +8,28 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  display: none;
 }
 
 .Image__content:focus {
   outline: none;
 }
 
+.Image.Image__loading {
+  background-color: var(--Theme__primary200);
+}
+
 .Image.Image__loaded {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Image.Image__loaded .Image__content {
+  display: block;
+}
+
+.Image__loadError {
+  background-color: var(--Theme__primary200);
+  color: var(--Theme__primary300);
 }

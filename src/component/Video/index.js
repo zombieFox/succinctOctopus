@@ -5,7 +5,7 @@ import { applyCSSVar } from '../../utility/applyCSSVar';
 
 import './index.css';
 
-export const Video = function({ mediaData = null, scrub = false } = {}) {
+export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = {}) {
 
   this.node = {
     video: node('div|class:Video'),
@@ -128,17 +128,19 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   this.render = () => {
 
-    this.node.video.appendChild(this.node.content);
+    this.node.video.classList.add('Video__loading');
 
-    this.node.content.appendChild(this.node.source);
+    this.node.video.append(this.node.content);
+
+    this.node.content.append(this.node.source);
 
     if (scrub) {
 
-      this.node.progress.appendChild(this.node.bar);
+      this.node.progress.append(this.node.bar);
 
-      this.node.video.appendChild(this.node.progress);
+      this.node.video.append(this.node.progress);
 
-      this.node.video.appendChild(this.node.scrub);
+      this.node.video.append(this.node.scrub);
 
     }
 
@@ -188,7 +190,9 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   this.naturalHeight = false;
 
-  this.bind = () => {
+  this.loadError = false;
+
+  this.bind = ({ onLoadFunc }) => {
 
     this.node.content.addEventListener('click', () => {
 
@@ -258,7 +262,19 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
       mediaData.gridItem.size();
 
+      this.node.video.classList.remove('Video__loading');
+
       this.node.video.classList.add('Video__loaded');
+
+      if (onLoadFunc) { onLoadFunc(); };
+
+    });
+
+    this.node.source.addEventListener('error', (event) => {
+
+      mediaData.gridItem.loadError();
+
+      this.loadError = true;
 
     });
 
@@ -272,6 +288,6 @@ export const Video = function({ mediaData = null, scrub = false } = {}) {
 
   this.render();
 
-  this.bind();
+  this.bind({ onLoadFunc: onLoadFunc });
 
 };

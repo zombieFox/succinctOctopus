@@ -1,6 +1,5 @@
 .Video {
   width: 100%;
-  display: none;
   position: relative;
 }
 
@@ -9,16 +8,30 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  display: none;
 }
 
 .Video__content:focus {
   outline: none;
 }
 
+.Video.Video__loading {
+  background-color: var(--Theme__primary200);
+}
+
 .Video.Video__loaded {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Video.Video__loaded .Video__content {
+  display: block;
+}
+
+.Video__loadError {
+  background-color: var(--Theme__primary200);
+  color: var(--Theme__primary300);
 }
 
 .Video__scrubArea {

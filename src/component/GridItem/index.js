@@ -102,6 +102,16 @@ export const GridItem = function(mediaData) {
 
   }
 
+  this.size = () => {
+
+    let rect = this.node.gridItem.getBoundingClientRect();
+
+    applyCSSVar('--GridItem__mediaWidth', rect.width, this.node.gridItem);
+
+    applyCSSVar('--GridItem__mediaHeight', rect.height, this.node.gridItem);
+
+  }
+
   this.bind = () => {
 
     this.node.gridItem.addEventListener('mousemove', event => {
@@ -171,16 +181,6 @@ export const GridItem = function(mediaData) {
 
   }
 
-  this.size = () => {
-
-    let rect = this.node.gridItem.getBoundingClientRect();
-
-    applyCSSVar('--GridItem__mediaWidth', rect.width, this.node.gridItem);
-
-    applyCSSVar('--GridItem__mediaHeight', rect.height, this.node.gridItem);
-
-  }
-
   this.render = () => {
 
     switch (mediaData.type) {
@@ -190,7 +190,17 @@ export const GridItem = function(mediaData) {
 
         this.type = 'video';
 
-        this.node.mediaItem = new Video({ mediaData: mediaData, scrub: true });
+        this.node.mediaItem = new Video({
+          mediaData: mediaData,
+          scrub: true,
+          onLoadFunc: () => {
+
+            this.size();
+
+            this.max();
+
+          }
+        });
 
         break;
 
@@ -201,7 +211,16 @@ export const GridItem = function(mediaData) {
 
         this.type = 'image';
 
-        this.node.mediaItem = new Image({ mediaData: mediaData });
+        this.node.mediaItem = new Image({
+          mediaData: mediaData,
+          onLoadFunc: () => {
+
+            this.size();
+
+            this.max();
+
+          }
+        });
 
         break;
 
