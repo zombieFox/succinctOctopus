@@ -75,13 +75,19 @@
   grid-row: span 1;
 }
 
-.Grid__flex .GridItem {
-  max-height: calc(var(--Grid__flexSizeCount) * 1vmin);
-  aspect-ratio: var(--GridItem__mediaAspectRatio);
+.Grid__flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Grid__flex::after {
+  content: "";
+  flex-grow: 999999999;
 }
 
 .Grid__flex .GridItem {
-  flex-grow: 1;
+  width: calc(((var(--GridItem__mediaWidth) * (var(--Grid__flexSizeCount) * 50)) / var(--GridItem__mediaHeight)) * 1px);
+  flex-grow: calc((var(--GridItem__mediaWidth) * (var(--Grid__flexSizeCount) * 50)) / var(--GridItem__mediaHeight));
 }
 
 .Grid__column .GridItem {

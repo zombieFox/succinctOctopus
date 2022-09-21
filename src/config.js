@@ -15,11 +15,11 @@ export const config = {
       },
       grid: {
         active: false,
-        size: { count: 4, default: 4, min: 4, max: 100, increment: 1 },
+        size: { count: 6, default: 6, min: 4, max: 100, increment: 1 },
       },
       flex: {
         active: false,
-        size: { count: 38, default: 38, min: 6, max: 100, increment: 1 },
+        size: { count: 6, default: 6, min: 1, max: 100, increment: 1 },
       },
       column: {
         active: false,
@@ -54,7 +54,7 @@ export const config = {
 
   theme: {
     scale: 128,
-    dark: false,
+    dark: true,
     text: { h: 240, s: 10, contrast: { start: 10, end: 90 }, shades: 9 },
     primary: { h: 215, s: 25, contrast: { start: 10, end: 90 }, shades: 9 },
     accent: { h: 190, s: 80, contrast: { start: 90, end: 10 }, shades: 9 },
