@@ -74,13 +74,11 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
       applyCSSVar('--GridItem__mediaAspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
 
-      mediaData.gridItem.size();
+      if (onLoadFunc) { onLoadFunc(); };
 
       this.node.image.classList.remove('Image__loading');
 
       this.node.image.classList.add('Image__loaded');
-
-      if (onLoadFunc) { onLoadFunc(); };
 
     }
 

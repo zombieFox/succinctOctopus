@@ -260,13 +260,11 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
       applyCSSVar('--GridItem__mediaAspectRatio', this.aspectRatio(), mediaData.gridItem.getNode());
 
-      mediaData.gridItem.size();
+      if (onLoadFunc) { onLoadFunc(); };
 
       this.node.video.classList.remove('Video__loading');
 
       this.node.video.classList.add('Video__loaded');
-
-      if (onLoadFunc) { onLoadFunc(); };
 
     });
 
