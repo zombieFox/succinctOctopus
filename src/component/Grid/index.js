@@ -374,7 +374,7 @@ export const Grid = function() {
 
         case 'video':
 
-          mediaItem.gridItem.node.mediaItem.pause()
+          mediaItem.gridItem.node.mediaItem.pause();
 
           break;
 
@@ -386,7 +386,7 @@ export const Grid = function() {
 
       if (mediaItem.gridItem.node.mediaItem.isPaused()) {
 
-        mediaItem.gridItem.node.mediaItem.play()
+        mediaItem.gridItem.node.mediaItem.play();
 
       }
 
@@ -949,6 +949,8 @@ export const Grid = function() {
 
     window.addEventListener('scroll', event => {
 
+      this.mediaInView();
+
       if (config.media.autoPlay) {
 
         this.autoPlayVideoInView();
@@ -959,11 +961,7 @@ export const Grid = function() {
 
     this.node.grid.addEventListener('scroll', event => {
 
-      if (config.grid.view.solo.active) {
-
-        this.mediaInView();
-
-      }
+      this.mediaInView();
 
       if (config.media.autoPlay) {
 
