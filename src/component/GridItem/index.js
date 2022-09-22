@@ -114,7 +114,7 @@ export const GridItem = function(mediaData) {
 
     this.node.gridItem.addEventListener('mousemove', event => {
 
-      if (event.shiftKey && config.grid.view.square.active) { this.pan.move(event); }
+      if (event.shiftKey && config.grid.view.square.active) { this.pan.move(event); };
 
     });
 
@@ -173,7 +173,7 @@ export const GridItem = function(mediaData) {
 
         }
 
-      }
+      };
 
     });
 

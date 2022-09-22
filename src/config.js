@@ -19,7 +19,7 @@ export const config = {
       },
       flex: {
         active: false,
-        size: { count: 6, default: 6, min: 1, max: 100, increment: 1 },
+        size: { count: 32, default: 32, min: 1, max: 100, increment: 1 },
       },
       column: {
         active: false,
