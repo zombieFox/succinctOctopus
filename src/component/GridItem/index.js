@@ -13,8 +13,7 @@ import './index.css';
 export const GridItem = function(mediaData) {
 
   this.node = {
-    gridItem: node('div|class:GridItem'),
-    mediaItem: null,
+    gridItem: node('div|class:GridItem')
   }
 
   this.orientation = (mediaOrientation) => {
@@ -55,9 +54,9 @@ export const GridItem = function(mediaData) {
 
     let gridItemHeight = this.node.gridItem.clientHeight;
 
-    let mediaItemWidth = this.node.mediaItem.node.content.clientWidth;
+    let mediaItemWidth = this.mediaItem.node.content.clientWidth;
 
-    let mediaItemHeight = this.node.mediaItem.node.content.clientHeight;
+    let mediaItemHeight = this.mediaItem.node.content.clientHeight;
 
     let overflowX = (mediaItemWidth - gridItemWidth) / 2;
 
@@ -88,8 +87,8 @@ export const GridItem = function(mediaData) {
     this.node.gridItem.classList.remove('GridItem__maxWidth');
 
     if (
-      (windowWidth / mediaData.gridItem.node.mediaItem.naturalWidth) <
-      (windowHeight / mediaData.gridItem.node.mediaItem.naturalHeight)
+      (windowWidth / mediaData.gridItem.mediaItem.naturalWidth) <
+      (windowHeight / mediaData.gridItem.mediaItem.naturalHeight)
     ) {
 
       this.node.gridItem.classList.add('GridItem__maxWidth');
@@ -104,11 +103,13 @@ export const GridItem = function(mediaData) {
 
   this.size = () => {
 
-    applyCSSVar('--GridItem__mediaWidth', this.node.mediaItem.naturalWidth, this.node.gridItem);
+    applyCSSVar('--GridItem__mediaWidth', this.mediaItem.naturalWidth, this.node.gridItem);
 
-    applyCSSVar('--GridItem__mediaHeight', this.node.mediaItem.naturalHeight, this.node.gridItem);
+    applyCSSVar('--GridItem__mediaHeight', this.mediaItem.naturalHeight, this.node.gridItem);
 
   }
+
+  this.mediaItem = null;
 
   this.bind = () => {
 
@@ -188,7 +189,7 @@ export const GridItem = function(mediaData) {
 
         this.type = 'video';
 
-        this.node.mediaItem = new Video({
+        this.mediaItem = new Video({
           mediaData: mediaData,
           scrub: true,
           onLoadFunc: () => {
@@ -209,7 +210,7 @@ export const GridItem = function(mediaData) {
 
         this.type = 'image';
 
-        this.node.mediaItem = new Image({
+        this.mediaItem = new Image({
           mediaData: mediaData,
           onLoadFunc: () => {
 
@@ -224,7 +225,7 @@ export const GridItem = function(mediaData) {
 
     }
 
-    this.node.gridItem.append(this.node.mediaItem.getNode());
+    this.node.gridItem.append(this.mediaItem.getNode());
 
   }
 

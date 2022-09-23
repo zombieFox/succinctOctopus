@@ -376,7 +376,7 @@ export const Zoomer = function(grid) {
       case 'mp4':
       case 'webm':
 
-        if (this.mediaItemInZoom.gridItem.node.mediaItem.isPaused()) {
+        if (this.mediaItemInZoom.gridItem.mediaItem.isPaused()) {
 
           this.pauseVideo();
 
@@ -401,7 +401,7 @@ export const Zoomer = function(grid) {
         case 'mp4':
         case 'webm':
 
-          this.node.mediaItem.currentTimeSet(grid.inView().gridItem.node.mediaItem.currentTimeGet());
+          this.node.mediaItem.currentTimeSet(grid.inView().gridItem.mediaItem.currentTimeGet());
 
           break;
 

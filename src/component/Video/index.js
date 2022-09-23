@@ -168,7 +168,7 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
     let padding = 20;
 
-    let rect = mediaData.gridItem.node.mediaItem.node.scrub.getBoundingClientRect();
+    let rect = mediaData.gridItem.mediaItem.node.scrub.getBoundingClientRect();
 
     let cursorPostionX = event.clientX - rect.left;
 
