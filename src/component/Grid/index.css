@@ -1,6 +1,7 @@
 .Grid {
   padding: calc(var(--Grid__gapCount) * 0.2vmax);
   gap: calc(var(--Grid__gapCount) * 0.2vmax);
+  max-width: 100vw;
 }
 
 .Grid.Grid__zoomer.Grid__zoomerTeardrop {
