@@ -14,8 +14,7 @@ import './index.css';
 export const Zoomer = function(grid) {
 
   this.node = {
-    zoomer: node('div|class:Zoomer'),
-    mediaItem: null,
+    zoomer: node('div|class:Zoomer')
   }
 
   this.magnification = {}
@@ -298,7 +297,7 @@ export const Zoomer = function(grid) {
         case 'mp4':
         case 'webm':
 
-          this.node.mediaItem = new Video({ mediaData: this.mediaItemInZoom });
+          this.mediaItem = new Video({ mediaData: this.mediaItemInZoom });
 
           break;
 
@@ -307,23 +306,25 @@ export const Zoomer = function(grid) {
         case 'jpeg':
         case 'png':
 
-          this.node.mediaItem = new Image({ mediaData: this.mediaItemInZoom });
+          this.mediaItem = new Image({ mediaData: this.mediaItemInZoom });
 
           break;
 
       };
 
-      if (this.node.mediaItem) {
+      if (this.mediaItem) {
 
         clearChildNode(this.node.zoomer);
 
-        this.node.zoomer.append(this.node.mediaItem.getNode());
+        this.node.zoomer.append(this.mediaItem.getNode());
 
       };
 
     };
 
   }
+
+  this.mediaItem = null;
 
   this.mediaItemInView = { path: '' }
 
@@ -346,7 +347,7 @@ export const Zoomer = function(grid) {
       case 'mp4':
       case 'webm':
 
-        this.node.mediaItem.play();
+        this.mediaItem.play();
 
         break;
 
@@ -361,7 +362,7 @@ export const Zoomer = function(grid) {
       case 'mp4':
       case 'webm':
 
-        this.node.mediaItem.pause();
+        this.mediaItem.pause();
 
         break;
 
@@ -401,7 +402,7 @@ export const Zoomer = function(grid) {
         case 'mp4':
         case 'webm':
 
-          this.node.mediaItem.currentTimeSet(grid.inView().gridItem.mediaItem.currentTimeGet());
+          this.mediaItem.currentTimeSet(this.mediaItemInView.gridItem.mediaItem.currentTimeGet());
 
           break;
 
