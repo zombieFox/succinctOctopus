@@ -89,21 +89,20 @@ a {
 a:link,
 a:visited {
   color: var(--Theme__text900);
+  text-decoration: none;
 }
 
 a:focus {
-  text-decoration-color: var(--Theme__text900);
+  color: var(--Theme__text800);
   outline: none;
 }
 
 a:hover {
-  color: var(--Theme__text900);
-  text-decoration-color: var(--Theme__accent500);
+  color: var(--Theme__text800);
 }
 
 a:active {
-  color: var(--Theme__text900);
-  text-decoration-color: var(--Theme__text900);
+  color: var(--Theme__text700);
 }
 
 abbr[title] {
