@@ -34,7 +34,7 @@ export const Media = function() {
 
     if (config.media.video) {
 
-      // this.add(require.context('../../media/video', false, /\.(mp4)$/));
+      this.add(require.context('../../media/video', false, /\.(mp4)$/));
 
     };
 
