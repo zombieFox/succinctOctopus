@@ -295,7 +295,6 @@ export const Zoomer = function(grid) {
       switch (this.mediaItemInZoom.type) {
 
         case 'mp4':
-        case 'webm':
 
           this.mediaItem = new Video({ mediaData: this.mediaItemInZoom });
 
@@ -345,7 +344,6 @@ export const Zoomer = function(grid) {
     switch (this.mediaItemInZoom.type) {
 
       case 'mp4':
-      case 'webm':
 
         this.mediaItem.play();
 
@@ -360,7 +358,6 @@ export const Zoomer = function(grid) {
     switch (this.mediaItemInZoom.type) {
 
       case 'mp4':
-      case 'webm':
 
         this.mediaItem.pause();
 
@@ -375,7 +372,6 @@ export const Zoomer = function(grid) {
     switch (this.mediaItemInZoom.type) {
 
       case 'mp4':
-      case 'webm':
 
         if (this.mediaItemInZoom.gridItem.mediaItem.isPaused()) {
 
@@ -400,7 +396,6 @@ export const Zoomer = function(grid) {
       switch (this.mediaItemInZoom.type) {
 
         case 'mp4':
-        case 'webm':
 
           this.mediaItem.currentTimeSet(this.mediaItemInView.gridItem.mediaItem.currentTimeGet());
 

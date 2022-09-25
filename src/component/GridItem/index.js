@@ -213,7 +213,6 @@ export const GridItem = function(mediaData) {
     switch (mediaData.type) {
 
       case 'mp4':
-      case 'webm':
 
         this.type = 'video';
 

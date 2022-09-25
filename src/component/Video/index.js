@@ -126,44 +126,6 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
   }
 
-  this.render = () => {
-
-    this.node.video.classList.add('Video__loading');
-
-    this.node.video.append(this.node.content);
-
-    this.node.content.append(this.node.source);
-
-    if (scrub) {
-
-      this.node.progress.append(this.node.bar);
-
-      this.node.video.append(this.node.progress);
-
-      this.node.video.append(this.node.scrub);
-
-    }
-
-    this.node.content.muted = true;
-
-    this.node.content.loop = true;
-
-    this.node.content.autoplay = config.media.autoPlay;
-
-    if (mediaData.path.includes('mp4') || mediaData.path.endsWith('mp4')) {
-
-      this.node.source.type = 'video/mp4';
-
-    } else if (mediaData.path.includes('webm') || mediaData.path.endsWith('webm')) {
-
-      this.node.source.type = 'video/webm';
-
-    }
-
-    this.node.source.src = `${mediaData.path}.${mediaData.type}`;
-
-  }
-
   this.scrub = (event) => {
 
     let padding = 20;
@@ -279,6 +241,40 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
     window.addEventListener('visibilitychange', this.autoPause);
 
     window.addEventListener('blur', this.autoPause);
+
+  }
+
+  this.render = () => {
+
+    this.node.video.classList.add('Video__loading');
+
+    this.node.video.append(this.node.content);
+
+    this.node.content.append(this.node.source);
+
+    if (scrub) {
+
+      this.node.progress.append(this.node.bar);
+
+      this.node.video.append(this.node.progress);
+
+      this.node.video.append(this.node.scrub);
+
+    }
+
+    this.node.content.muted = true;
+
+    this.node.content.loop = true;
+
+    this.node.content.autoplay = config.media.autoPlay;
+
+    if (mediaData.path.includes('mp4') || mediaData.path.endsWith('mp4')) {
+
+      this.node.source.type = 'video/mp4';
+
+    };
+
+    this.node.source.src = `${mediaData.path}.${mediaData.type}`;
 
   }
 

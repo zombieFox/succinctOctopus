@@ -22,16 +22,6 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
   }
 
-  this.render = () => {
-
-    this.node.image.classList.add('Image__loading');
-
-    this.node.content.src = `${mediaData.path}.${mediaData.type}`;
-
-    this.node.image.append(this.node.content);
-
-  }
-
   this.squareThreshold = 0.95;
 
   this.orientation = false;
@@ -89,6 +79,16 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
       this.loadError = true;
 
     }
+
+  }
+
+  this.render = () => {
+
+    this.node.image.classList.add('Image__loading');
+
+    this.node.content.src = `${mediaData.path}.${mediaData.type}`;
+
+    this.node.image.append(this.node.content);
 
   }
 
