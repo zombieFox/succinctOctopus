@@ -86,7 +86,7 @@ export const Grid = function() {
 
   this.view.change = (id) => {
 
-    this.view.option.forEach((gridViewItem, index) => {
+    this.view.option.forEach(gridViewItem => {
 
       gridViewItem.active = false;
 
@@ -336,6 +336,46 @@ export const Grid = function() {
 
   }
 
+  this.mediaOutView = () => {
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
+
+      let windowHeight = window.innerHeight;
+
+      if (gridItemRect.bottom < ((window.innerHeight * 1.5) * -1) || gridItemRect.top > (window.innerHeight * 1.5)) {
+
+        mediaItem.outView = true;
+
+      } else {
+
+        mediaItem.outView = false;
+
+      };
+
+    });
+
+  }
+
+  this.outView = () => {
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      if (mediaItem.outView) {
+
+        mediaItem.gridItem.hide();
+
+      } else {
+
+        mediaItem.gridItem.show();
+
+      }
+
+    });
+
+  }
+
   this.videoInView = () => {
 
     let allVideoMediaItemInView = [];
@@ -494,6 +534,14 @@ export const Grid = function() {
 
         this.style();
 
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         this.panReset();
 
         this.magnificationVideoSync();
@@ -545,34 +593,44 @@ export const Grid = function() {
       keycode: [187],
       action: () => {
 
+        this.view.size.up();
+
+        this.style();
+
+        this.panReset();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         switch (this.view.getActive().id) {
 
           case 'square':
-            this.view.size.up();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[0].id.toUpperCase()} ${config.grid.view.square.size.count}`);
+
             break;
 
           case 'grid':
-            this.view.size.up();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[1].id.toUpperCase()} ${config.grid.view.grid.size.count}`);
+
             break;
 
           case 'flex':
-            this.view.size.up();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[2].id.toUpperCase()} ${config.grid.view.flex.size.count}`);
+
             break;
 
           case 'column':
-            this.view.size.up();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[3].id.toUpperCase()} ${config.grid.view.column.size.count}`);
+
             break;
 
         }
@@ -590,34 +648,44 @@ export const Grid = function() {
       keycode: [189],
       action: () => {
 
+        this.view.size.down();
+
+        this.style();
+
+        this.panReset();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         switch (this.view.getActive().id) {
 
           case 'square':
-            this.view.size.down();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[0].id.toUpperCase()} ${config.grid.view.square.size.count}`);
+
             break;
 
           case 'grid':
-            this.view.size.down();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[1].id.toUpperCase()} ${config.grid.view.grid.size.count}`);
+
             break;
 
           case 'flex':
-            this.view.size.down();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[2].id.toUpperCase()} ${config.grid.view.flex.size.count}`);
+
             break;
 
           case 'column':
-            this.view.size.down();
-            this.style();
-            this.panReset();
+
             app.message.render(`${this.view.option[3].id.toUpperCase()} ${config.grid.view.column.size.count}`);
+
             break;
 
         }
@@ -689,6 +757,12 @@ export const Grid = function() {
 
             this.mediaInView();
 
+            this.mediaOutView();
+
+            this.inView();
+
+            this.outView();
+
             this.magnificationMove();
 
             this.autoPlayVideoInView();
@@ -712,6 +786,12 @@ export const Grid = function() {
 
             this.mediaInView();
 
+            this.mediaOutView();
+
+            this.inView();
+
+            this.outView();
+
             this.magnificationMove();
 
             this.autoPlayVideoInView();
@@ -729,11 +809,17 @@ export const Grid = function() {
 
         this.view.cycle('previous');
 
+        this.style();
+
         this.mediaInView();
 
-        this.magnificationHide();
+        this.mediaOutView();
 
-        this.style();
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
 
         app.message.render(this.view.getActive().id.toUpperCase());
 
@@ -746,11 +832,17 @@ export const Grid = function() {
 
         this.view.cycle('next');
 
+        this.style();
+
         this.mediaInView();
 
-        this.magnificationHide();
+        this.mediaOutView();
 
-        this.style();
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
 
         app.message.render(this.view.getActive().id.toUpperCase());
 
@@ -763,9 +855,17 @@ export const Grid = function() {
 
         this.view.change(this.view.option[0].id);
 
-        this.magnificationHide();
-
         this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
 
         app.message.render(this.view.option[0].id.toUpperCase());
 
@@ -778,9 +878,17 @@ export const Grid = function() {
 
         this.view.change(this.view.option[1].id);
 
-        this.magnificationHide();
-
         this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
 
         app.message.render(this.view.option[1].id.toUpperCase());
 
@@ -793,9 +901,17 @@ export const Grid = function() {
 
         this.view.change(this.view.option[2].id);
 
-        this.magnificationHide();
-
         this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
 
         app.message.render(this.view.option[2].id.toUpperCase());
 
@@ -808,9 +924,17 @@ export const Grid = function() {
 
         this.view.change(this.view.option[3].id);
 
-        this.magnificationHide();
-
         this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
 
         app.message.render(this.view.option[3].id.toUpperCase());
 
@@ -823,9 +947,15 @@ export const Grid = function() {
 
         this.view.change(this.view.option[4].id);
 
+        this.style();
+
         this.mediaInView();
 
-        this.style();
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
 
         app.message.render(this.view.option[4].id.toUpperCase());
 
@@ -874,6 +1004,14 @@ export const Grid = function() {
 
         this.style();
 
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         this.panReset();
 
         this.magnificationVideoSync();
@@ -891,6 +1029,14 @@ export const Grid = function() {
 
         this.style();
 
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         this.panReset();
 
         this.magnificationVideoSync();
@@ -904,6 +1050,14 @@ export const Grid = function() {
 
       if (config.grid.view.square.active) {
 
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         this.panReset();
 
       };
@@ -914,6 +1068,14 @@ export const Grid = function() {
 
       if (config.grid.view.solo.active) {
 
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
         this.gridItemMax();
 
       };
@@ -921,8 +1083,6 @@ export const Grid = function() {
     });
 
     window.addEventListener('mousemove', event => {
-
-      this.mediaInView();
 
       if (event.altKey) {
 
@@ -949,17 +1109,29 @@ export const Grid = function() {
 
       this.mediaInView();
 
+      this.mediaOutView();
+
+      this.inView();
+
+      this.outView();
+
       if (config.media.autoPlay) {
 
         this.autoPlayVideoInView();
 
-      }
+      };
 
     });
 
     this.node.grid.addEventListener('scroll', event => {
 
       this.mediaInView();
+
+      this.mediaOutView();
+
+      this.inView();
+
+      this.outView();
 
       if (config.media.autoPlay) {
 
@@ -973,7 +1145,7 @@ export const Grid = function() {
 
   this.render = () => {
 
-    this.media.get().forEach((mediaItem, index) => {
+    this.media.get().forEach(mediaItem => {
 
       let mediaItemArray = mediaItem.split(/\.(?=[^\.]+$)/);
 
@@ -989,9 +1161,9 @@ export const Grid = function() {
 
     });
 
-    this.zoomer = new Zoomer(this);
-
     this.node.grid.append(this.zoomer.getNode());
+
+    console.log('[Grid] render', this.media.get());
 
   }
 

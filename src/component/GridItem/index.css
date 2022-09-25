@@ -7,6 +7,11 @@
   z-index: var(--ZIndex__mediaItem);
 }
 
+.GridItem.GridItem__hide .Image,
+.GridItem.GridItem__hide .Video {
+  visibility: hidden;
+}
+
 .Grid__square .GridItem {
   aspect-ratio: 1 / 1;
   position: relative;
