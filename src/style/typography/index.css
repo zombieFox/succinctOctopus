@@ -88,7 +88,7 @@ a {
 
 a:link,
 a:visited {
-  color: var(--Theme__text900);
+  color: var(--Theme__text700);
   text-decoration: none;
 }
 
@@ -102,7 +102,7 @@ a:hover {
 }
 
 a:active {
-  color: var(--Theme__text700);
+  color: var(--Theme__text900);
 }
 
 abbr[title] {

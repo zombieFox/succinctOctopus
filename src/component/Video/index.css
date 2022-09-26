@@ -51,12 +51,13 @@
 }
 
 .Video__progress {
-  position: absolute;
   background-color: hsla(var(--Theme__primary1H), calc(var(--Theme__primary1S) * 1%), calc(var(--Theme__primary1L) * 1%), 0.5);
+  backdrop-filter: blur(12px);
   padding: calc(((var(--Video__progressPadding) / 10) * 1em) + ((var(--Grid__radiusCount) / 8) * 0.2vmax)) calc(((var(--Video__progressPadding) / 10) * 1em) + ((var(--Grid__radiusCount) / 2) * 0.2vmax));
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
