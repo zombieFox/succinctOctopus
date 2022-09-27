@@ -8,28 +8,7 @@ export const config = {
   },
 
   grid: {
-    view: {
-      square: {
-        active: true,
-        size: { count: 4, default: 4, min: 2, max: 100, increment: 1 },
-      },
-      grid: {
-        active: false,
-        size: { count: 6, default: 6, min: 4, max: 100, increment: 1 },
-      },
-      flex: {
-        active: false,
-        size: { count: 32, default: 32, min: 1, max: 100, increment: 1 },
-      },
-      column: {
-        active: false,
-        size: { count: 36, default: 36, min: 6, max: 100, increment: 1 },
-      },
-      solo: {
-        active: false,
-        size: { count: 4, default: 4, min: 3, max: 100, increment: 1 },
-      },
-    },
+    view: 'flex', // (flex|square|column|solo)
     gap: {
       count: 4,
       default: 4,

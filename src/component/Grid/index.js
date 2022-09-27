@@ -44,23 +44,47 @@ export const Grid = function() {
 
   this.view = {}
 
+  this.view.all = {
+    flex: {
+      id: 'flex',
+      active: false,
+      size: { count: 32, default: 32, min: 1, max: 100, increment: 1 },
+    },
+    square: {
+      id: 'square',
+      active: false,
+      size: { count: 4, default: 4, min: 2, max: 100, increment: 1 },
+    },
+    column: {
+      id: 'column',
+      active: false,
+      size: { count: 36, default: 36, min: 6, max: 100, increment: 1 },
+    },
+    solo: {
+      id: 'solo',
+      active: false,
+      size: { count: 4, default: 4, min: 3, max: 100, increment: 1 },
+    }
+  }
+
   this.view.option = [
-    config.grid.view.square,
-    config.grid.view.grid,
-    config.grid.view.flex,
-    config.grid.view.column,
-    config.grid.view.solo,
+    this.view.all.square,
+    this.view.all.flex,
+    this.view.all.column,
+    this.view.all.solo,
   ]
 
-  this.view.option[0].id = 'square';
+  this.view.setInitial = () => {
 
-  this.view.option[1].id = 'grid';
+    for (var key in this.view.all) {
 
-  this.view.option[2].id = 'flex';
+      this.view.all[key].active = (this.view.all[key].id == config.grid.view);
 
-  this.view.option[3].id = 'column';
+    }
 
-  this.view.option[4].id = 'solo';
+    console.log(`[Grid] initial view set to ${config.grid.view}`);
+
+  }
 
   this.view.getActive = () => {
 
@@ -609,27 +633,21 @@ export const Grid = function() {
 
         switch (this.view.getActive().id) {
 
-          case 'square':
+          case this.view.all.flex.id:
 
-            app.message.render(`${this.view.option[0].id.toUpperCase()} ${config.grid.view.square.size.count}`);
-
-            break;
-
-          case 'grid':
-
-            app.message.render(`${this.view.option[1].id.toUpperCase()} ${config.grid.view.grid.size.count}`);
+            app.message.render(`${this.view.all.flex.id.toUpperCase()} ${this.view.all.flex.size.count}`);
 
             break;
 
-          case 'flex':
+          case this.view.all.square.id:
 
-            app.message.render(`${this.view.option[2].id.toUpperCase()} ${config.grid.view.flex.size.count}`);
+            app.message.render(`${this.view.all.square.id.toUpperCase()} ${this.view.all.square.size.count}`);
 
             break;
 
-          case 'column':
+          case this.view.all.column.id:
 
-            app.message.render(`${this.view.option[3].id.toUpperCase()} ${config.grid.view.column.size.count}`);
+            app.message.render(`${this.view.all.solo.id.toUpperCase()} ${this.view.all.column.size.count}`);
 
             break;
 
@@ -664,27 +682,21 @@ export const Grid = function() {
 
         switch (this.view.getActive().id) {
 
-          case 'square':
+          case this.view.all.flex.id:
 
-            app.message.render(`${this.view.option[0].id.toUpperCase()} ${config.grid.view.square.size.count}`);
-
-            break;
-
-          case 'grid':
-
-            app.message.render(`${this.view.option[1].id.toUpperCase()} ${config.grid.view.grid.size.count}`);
+            app.message.render(`${this.view.all.flex.id.toUpperCase()} ${this.view.all.flex.size.count}`);
 
             break;
 
-          case 'flex':
+          case this.view.all.square.id:
 
-            app.message.render(`${this.view.option[2].id.toUpperCase()} ${config.grid.view.flex.size.count}`);
+            app.message.render(`${this.view.all.square.id.toUpperCase()} ${this.view.all.square.size.count}`);
 
             break;
 
-          case 'column':
+          case this.view.all.column.id:
 
-            app.message.render(`${this.view.option[3].id.toUpperCase()} ${config.grid.view.column.size.count}`);
+            app.message.render(`${this.view.all.solo.id.toUpperCase()} ${this.view.all.column.size.count}`);
 
             break;
 
@@ -705,7 +717,7 @@ export const Grid = function() {
 
         switch (this.view.getActive().id) {
 
-          case 'solo':
+          case this.view.all.solo.id:
 
             this.view.size.down();
 
@@ -713,7 +725,7 @@ export const Grid = function() {
 
             this.magnificationMove();
 
-            app.message.render(`ZOOM x${config.grid.view.solo.size.count / 2}`);
+            app.message.render(`ZOOM x${this.view.all.solo.size.count / 2}`);
 
             break;
 
@@ -728,7 +740,7 @@ export const Grid = function() {
 
         switch (this.view.getActive().id) {
 
-          case 'solo':
+          case this.view.all.solo.id:
 
             this.view.size.up();
 
@@ -736,7 +748,7 @@ export const Grid = function() {
 
             this.magnificationMove();
 
-            app.message.render(`ZOOM x${config.grid.view.solo.size.count / 2}`);
+            app.message.render(`ZOOM x${this.view.all.solo.size.count / 2}`);
 
             break;
 
@@ -751,7 +763,7 @@ export const Grid = function() {
 
         switch (this.view.getActive().id) {
 
-          case 'solo':
+          case this.view.all.solo.id:
 
             this.node.grid.scrollTop = this.node.grid.scrollTop + window.innerHeight;
 
@@ -780,7 +792,7 @@ export const Grid = function() {
 
         switch (this.view.getActive().id) {
 
-          case 'solo':
+          case this.view.all.solo.id:
 
             this.node.grid.scrollTop = this.node.grid.scrollTop - window.innerHeight;
 
@@ -849,11 +861,34 @@ export const Grid = function() {
       }
     });
 
+    let changeTypeFlex = new KeyboardShortcut({
+      keycode: [50],
+      action: () => {
+
+        this.view.change(this.view.all.square.id);
+
+        this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
+
+        app.message.render(this.view.all.square.id.toUpperCase());
+
+      }
+    });
+
     let changeTypeSquare = new KeyboardShortcut({
       keycode: [49],
       action: () => {
 
-        this.view.change(this.view.option[0].id);
+        this.view.change(this.view.all.flex.id);
 
         this.style();
 
@@ -867,62 +902,16 @@ export const Grid = function() {
 
         this.magnificationHide();
 
-        app.message.render(this.view.option[0].id.toUpperCase());
-
-      }
-    });
-
-    let changeTypeGrid = new KeyboardShortcut({
-      keycode: [50],
-      action: () => {
-
-        this.view.change(this.view.option[1].id);
-
-        this.style();
-
-        this.mediaInView();
-
-        this.mediaOutView();
-
-        this.inView();
-
-        this.outView();
-
-        this.magnificationHide();
-
-        app.message.render(this.view.option[1].id.toUpperCase());
-
-      }
-    });
-
-    let changeTypeFlex = new KeyboardShortcut({
-      keycode: [51],
-      action: () => {
-
-        this.view.change(this.view.option[2].id);
-
-        this.style();
-
-        this.mediaInView();
-
-        this.mediaOutView();
-
-        this.inView();
-
-        this.outView();
-
-        this.magnificationHide();
-
-        app.message.render(this.view.option[2].id.toUpperCase());
+        app.message.render(this.view.all.flex.id.toUpperCase());
 
       }
     });
 
     let changeTypeColumn = new KeyboardShortcut({
-      keycode: [52],
+      keycode: [51],
       action: () => {
 
-        this.view.change(this.view.option[3].id);
+        this.view.change(this.view.all.column.id);
 
         this.style();
 
@@ -936,16 +925,16 @@ export const Grid = function() {
 
         this.magnificationHide();
 
-        app.message.render(this.view.option[3].id.toUpperCase());
+        app.message.render(this.view.all.column.id.toUpperCase());
 
       }
     });
 
     let changeTypeSolo = new KeyboardShortcut({
-      keycode: [53],
+      keycode: [52],
       action: () => {
 
-        this.view.change(this.view.option[4].id);
+        this.view.change(this.view.all.solo.id);
 
         this.style();
 
@@ -957,7 +946,7 @@ export const Grid = function() {
 
         this.outView();
 
-        app.message.render(this.view.option[4].id.toUpperCase());
+        app.message.render(this.view.all.solo.id.toUpperCase());
 
       }
     });
@@ -1068,7 +1057,7 @@ export const Grid = function() {
 
       if (event.altKey) {
 
-        if (config.grid.view.solo.active) {
+        if (this.view.all.solo.active) {
 
           switch (this.inView().type) {
 
@@ -1151,6 +1140,8 @@ export const Grid = function() {
   this.getNode = () => this.node.grid;
 
   this.zoomer = new Zoomer(this);
+
+  this.view.setInitial();
 
   this.render();
 

@@ -63,23 +63,6 @@
   transform: translateX(calc(var(--GridItem__panX) * 1px));
 }
 
-.Grid__grid .GridItem {}
-
-.Grid__grid .GridItem.GridItem__square {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.Grid__grid .GridItem.GridItem__portrait {
-  grid-column: span 1;
-  grid-row: span 2;
-}
-
-.Grid__grid .GridItem.GridItem__landscape {
-  grid-column: span 2;
-  grid-row: span 1;
-}
-
 .Grid__flex {
   display: flex;
   flex-wrap: wrap;

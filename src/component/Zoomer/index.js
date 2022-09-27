@@ -49,7 +49,7 @@ export const Zoomer = function(grid) {
 
         let yCenterOffset = (gridItemHeight / 2) - cursorPostionY;
 
-        let magnification = config.grid.view.solo.size.count / 2;
+        let magnification = app.grid.view.all.solo.size.count / 2;
 
         applyCSSVar('--Zoomer__magnification', magnification, this.node.zoomer);
 
@@ -85,7 +85,7 @@ export const Zoomer = function(grid) {
 
       grid.getNode().classList.add('Grid__zoomer');
 
-      app.message.render(`ZOOM x${config.grid.view.solo.size.count / 2}`);
+      app.message.render(`ZOOM x${app.grid.view.all.solo.size.count / 2}`);
 
     } else {
 
@@ -473,7 +473,7 @@ export const Zoomer = function(grid) {
 
     window.addEventListener('mousemove', event => {
 
-      if (config.grid.view.solo.active) {
+      if (app.grid.view.all.solo.active) {
 
         this.magnification.state.eventData = event;
 
@@ -495,7 +495,7 @@ export const Zoomer = function(grid) {
       keycode: [90],
       action: () => {
 
-        if (config.grid.view.solo.active) {
+        if (app.grid.view.all.solo.active) {
 
           this.type();
 
@@ -528,7 +528,7 @@ export const Zoomer = function(grid) {
       keycode: [88],
       action: () => {
 
-        if (config.grid.view.solo.active) {
+        if (app.grid.view.all.solo.active) {
 
           if (!this.magnification.state.visible) {
             this.magnification.toggle();
@@ -561,7 +561,7 @@ export const Zoomer = function(grid) {
 
     grid.getNode().addEventListener('scroll', event => {
 
-      if (config.grid.view.solo.active) {
+      if (app.grid.view.all.solo.active) {
 
         this.mediaInView();
 
