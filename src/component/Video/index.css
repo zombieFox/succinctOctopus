@@ -34,17 +34,6 @@
   color: var(--Theme__primary300);
 }
 
-.Video__scrubArea {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc(100% - 1em);
-  height: calc(100% - 1em);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 2;
-}
-
 :root {
   --Video__progressPadding: 4;
   --Video__progressSize: 2;
@@ -63,7 +52,7 @@
   width: 100%;
   opacity: 0;
   transition: opacity var(--Theme__transitionMediumEase);
-  z-index: 3;
+  z-index: 2;
 }
 
 .Video:hover .Video__progress {
@@ -75,5 +64,4 @@
   border-radius: calc(var(--Video__progressSize) * 1px);
   width: calc(var(--Video__progress) * 1%);
   height: calc(var(--Video__progressSize) * 1px);
-  z-index: 2;
 }

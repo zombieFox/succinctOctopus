@@ -11,7 +11,6 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
     video: node('div|class:Video'),
     content: node('video|class:Video__content,loop,muted'),
     source: node('source'),
-    scrub: node('div|class:Video__scrubArea'),
     progress: node('div|class:Video__progress'),
     bar: node('div|class:Video__bar'),
   }
@@ -128,13 +127,13 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
   this.scrub = (event) => {
 
-    let padding = 20;
+    let padding = 10;
 
-    let rect = mediaData.gridItem.mediaItem.node.scrub.getBoundingClientRect();
+    let rect = this.node.video.getBoundingClientRect();
 
-    let cursorPostionX = event.clientX - rect.left;
+    let cursorPostionX = event.clientX - (rect.left + padding);
 
-    this.node.content.currentTime = cursorPostionX / rect.width * this.node.content.duration;
+    this.node.content.currentTime = cursorPostionX / (rect.width - (padding * 2)) * this.node.content.duration;
 
   }
 
@@ -174,7 +173,7 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
     });
 
-    this.node.content.addEventListener('mousemove', (event) => {
+    this.node.video.addEventListener('mousemove', (event) => {
 
       if (event.altKey) {
 
@@ -183,6 +182,12 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
         this.progressBar(event);
 
       }
+
+    });
+
+    this.node.progress.addEventListener('click', (event) => {
+
+      this.scrub(event);
 
     });
 
@@ -257,8 +262,6 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
       this.node.progress.append(this.node.bar);
 
       this.node.video.append(this.node.progress);
-
-      this.node.video.append(this.node.scrub);
 
     }
 
