@@ -63,16 +63,6 @@
   transform: translateX(calc(var(--GridItem__panX) * 1px));
 }
 
-.Grid__flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Grid__flex::after {
-  content: "";
-  flex-grow: 999999999;
-}
-
 .Grid__flex .GridItem {
   width: calc(((var(--GridItem__mediaWidth) * (var(--Grid__flexSizeCount) * 10)) / var(--GridItem__mediaHeight)) * 1px);
   flex-grow: calc((var(--GridItem__mediaWidth) * (var(--Grid__flexSizeCount) * 10)) / var(--GridItem__mediaHeight));

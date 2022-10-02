@@ -17,6 +17,7 @@
 
 .Image.Image__loading {
   background-color: var(--Theme__primary200);
+  min-width: 4em;
 }
 
 .Image.Image__loaded {

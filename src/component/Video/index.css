@@ -17,6 +17,7 @@
 
 .Video.Video__loading {
   background-color: var(--Theme__primary200);
+  min-width: 4em;
 }
 
 .Video.Video__loaded {
