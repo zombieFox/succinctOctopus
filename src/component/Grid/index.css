@@ -5,7 +5,7 @@
 }
 
 .Grid.Grid__zoomer.Grid__zoomerTeardrop {
-  cursor: url('zoomer-teardrop-cursor.svg') 16 16, auto;
+  cursor: url('../Zoomer/zoomer-teardrop-cursor.svg') 16 16, auto;
 }
 
 .Grid.Grid__zoomer.Grid__zoomerPinpoint,
