@@ -27,7 +27,7 @@ export const config = {
 
   zoom: {
     size: 45,
-    border: { count: 3, default: 3, min: 0, max: 40, increment: 1 },
+    border: { count: 0, default: 0, min: 0, max: 40, increment: 1 },
     teardrop: { offset: 10 }
   },
 

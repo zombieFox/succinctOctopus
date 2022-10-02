@@ -86,7 +86,7 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
     this.node.image.classList.add('Image__loading');
 
-    this.node.content.src = `${mediaData.path}.${mediaData.type}`;
+    this.node.content.src = mediaData.url;
 
     this.node.image.append(this.node.content);
 

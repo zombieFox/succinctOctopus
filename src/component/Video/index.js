@@ -271,13 +271,9 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
     this.node.content.autoplay = config.media.autoPlay;
 
-    if (mediaData.path.includes('mp4') || mediaData.path.endsWith('mp4')) {
+    this.node.source.type = 'video/mp4';
 
-      this.node.source.type = 'video/mp4';
-
-    };
-
-    this.node.source.src = `${mediaData.path}.${mediaData.type}`;
+    this.node.source.src = mediaData.url;
 
   }
 

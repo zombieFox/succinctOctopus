@@ -288,22 +288,19 @@ export const Zoomer = function(grid) {
 
   this.addMediaItem = () => {
 
-    if (this.mediaItemInView.path != this.mediaItemInZoom.path) {
+    if (this.mediaItemInView.url != this.mediaItemInZoom.url) {
 
       this.mediaItemInZoom = this.mediaItemInView;
 
       switch (this.mediaItemInZoom.type) {
 
-        case 'mp4':
+        case 'video':
 
           this.mediaItem = new Video({ mediaData: this.mediaItemInZoom });
 
           break;
 
-        case 'gif':
-        case 'jpg':
-        case 'jpeg':
-        case 'png':
+        case 'image':
 
           this.mediaItem = new Image({ mediaData: this.mediaItemInZoom });
 
@@ -325,9 +322,9 @@ export const Zoomer = function(grid) {
 
   this.mediaItem = null;
 
-  this.mediaItemInView = { path: '' }
+  this.mediaItemInView = { url: '' }
 
-  this.mediaItemInZoom = { path: '' }
+  this.mediaItemInZoom = { url: '' }
 
   this.hide = () => {
 
@@ -343,7 +340,7 @@ export const Zoomer = function(grid) {
 
     switch (this.mediaItemInZoom.type) {
 
-      case 'mp4':
+      case 'video':
 
         this.mediaItem.play();
 
@@ -357,7 +354,7 @@ export const Zoomer = function(grid) {
 
     switch (this.mediaItemInZoom.type) {
 
-      case 'mp4':
+      case 'video':
 
         this.mediaItem.pause();
 
@@ -371,7 +368,7 @@ export const Zoomer = function(grid) {
 
     switch (this.mediaItemInZoom.type) {
 
-      case 'mp4':
+      case 'video':
 
         if (this.mediaItemInZoom.gridItem.mediaItem.isPaused()) {
 
@@ -395,7 +392,7 @@ export const Zoomer = function(grid) {
 
       switch (this.mediaItemInZoom.type) {
 
-        case 'mp4':
+        case 'video':
 
           this.mediaItem.currentTimeSet(this.mediaItemInView.gridItem.mediaItem.currentTimeGet());
 
