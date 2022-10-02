@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1.4142 32H0L13 19V20.4142L1.4142 32Z" fill="black"/>
+  <path d="M32 32L19 19V20.4142L30.5858 32H32Z" fill="black"/>
+  <path d="M32 0L19 13H20.4142L32 1.4142V0Z" fill="black"/>
+  <path d="M0 0V1.41422L11.5858 13H13L0 0Z" fill="black"/>
+  <path d="M0 32L13 19H11.5858L0 30.5858V32Z" fill="white"/>
+  <path d="M32 30.5858V32L19 19H20.4142L32 30.5858Z" fill="white"/>
+  <path d="M30.5858 0H32L19 13V11.5858L30.5858 0Z" fill="white"/>
+  <path d="M1.4142 0L13 11.5858V13L0 0H1.4142Z" fill="white"/>
+</svg>
