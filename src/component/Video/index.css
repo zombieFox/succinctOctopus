@@ -18,6 +18,10 @@
 .Video.Video__loading {
   background-color: var(--Theme__primary200);
   min-width: 4em;
+  min-width: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Video.Video__loaded {

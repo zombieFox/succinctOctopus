@@ -1,0 +1,40 @@
+.LoadingIcon {
+  margin: 1em;
+  min-width: 0.5em;
+  min-height: 0.5em;
+  display: block;
+  position: relative;
+  animation: loading 1s infinite ease-in-out;
+}
+
+.LoadingIcon:before,
+.LoadingIcon:after {
+  content: "";
+  border-radius: 100%;
+  position: absolute;
+  min-width: 0.25em;
+  min-height: 0.25em;
+  display: block;
+}
+
+.LoadingIcon:before {
+  background-color: var(--Theme__accent300);
+  top: 0;
+  left: 0;
+}
+
+.LoadingIcon:after {
+  background-color: var(--Theme__accent700);
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

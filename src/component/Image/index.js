@@ -1,3 +1,5 @@
+import { LoadingIcon } from '../LoadingIcon';
+
 import { node } from '../../utility/node';
 import { applyCSSVar } from '../../utility/applyCSSVar';
 
@@ -8,6 +10,7 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
   this.node = {
     image: node('div|class:Image'),
     content: node('img|class:Image__content'),
+    loadingIcon: new LoadingIcon(),
   }
 
   this.gcd = (w, h) => {
@@ -70,6 +73,8 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
       this.node.image.classList.add('Image__loaded');
 
+      this.node.loadingIcon.getNode().remove();
+
     }
 
     this.node.content.onerror = () => {
@@ -85,6 +90,8 @@ export const Image = function({ mediaData = null, scrub = false, onLoadFunc } = 
   this.render = () => {
 
     this.node.image.classList.add('Image__loading');
+
+    this.node.image.append(this.node.loadingIcon.getNode());
 
     this.node.content.src = mediaData.url;
 

@@ -1,3 +1,5 @@
+import { LoadingIcon } from '../LoadingIcon';
+
 import { app } from '../../';
 import { config } from '../../config';
 import { node } from '../../utility/node';
@@ -13,6 +15,7 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
     source: node('source'),
     progress: node('div|class:Video__progress'),
     bar: node('div|class:Video__bar'),
+    loadingIcon: new LoadingIcon(),
   }
 
   this.play = () => {
@@ -233,6 +236,8 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
 
       this.node.video.classList.add('Video__loaded');
 
+      this.node.loadingIcon.getNode().remove();
+
     });
 
     this.node.source.addEventListener('error', (event) => {
@@ -252,6 +257,8 @@ export const Video = function({ mediaData = null, scrub = false, onLoadFunc } = 
   this.render = () => {
 
     this.node.video.classList.add('Video__loading');
+
+    this.node.video.append(this.node.loadingIcon.getNode());
 
     this.node.video.append(this.node.content);
 
