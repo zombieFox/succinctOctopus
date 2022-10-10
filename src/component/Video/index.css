@@ -55,6 +55,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  min-height: 1em;
   opacity: 0;
   transition: opacity var(--Theme__transitionMediumEase);
   z-index: 2;
