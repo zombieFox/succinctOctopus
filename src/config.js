@@ -8,7 +8,7 @@ export const config = {
   },
 
   grid: {
-    view: 'flex', // (flex|square|column|solo)
+    view: 'flex', // (square|flex|column|row|solo)
     gap: {
       count: 4,
       default: 4,

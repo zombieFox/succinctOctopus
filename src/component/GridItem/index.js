@@ -158,6 +158,7 @@ export const GridItem = function(mediaData) {
           case app.grid.view.all.flex.id:
           case app.grid.view.all.square.id:
           case app.grid.view.all.column.id:
+          case app.grid.view.all.row.id:
 
             app.grid.view.last.id = app.grid.view.getActive().id;
 

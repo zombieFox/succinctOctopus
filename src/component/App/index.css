@@ -5,4 +5,5 @@
   align-items: start;
   justify-items: start;
   position: relative;
+  width: max-content;
 }

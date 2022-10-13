@@ -69,8 +69,17 @@
 }
 
 .Grid__column .GridItem {
-  width: 100%;
+  width: calc(var(--Grid__columnSizeCount) * 1%);
+  height: initial;
   aspect-ratio: var(--GridItem__mediaAspectRatio);
+  flex-shrink: 0;
+}
+
+.Grid__row .GridItem {
+  width: initial;
+  height: calc(var(--Grid__rowSizeCount) * 1%);
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
+  flex-shrink: 0;
 }
 
 .Grid__solo .GridItem {

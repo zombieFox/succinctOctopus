@@ -60,6 +60,11 @@ export const Grid = function() {
       active: false,
       size: { count: 36, default: 36, min: 6, max: 100, increment: 1 },
     },
+    row: {
+      id: 'row',
+      active: false,
+      size: { count: 48, default: 48, min: 6, max: 100, increment: 1 },
+    },
     solo: {
       id: 'solo',
       active: false,
@@ -71,6 +76,7 @@ export const Grid = function() {
     this.view.all.square,
     this.view.all.flex,
     this.view.all.column,
+    this.view.all.row,
     this.view.all.solo,
   ]
 
@@ -647,7 +653,13 @@ export const Grid = function() {
 
           case this.view.all.column.id:
 
-            app.message.render(`${this.view.all.solo.id.toUpperCase()} ${this.view.all.column.size.count}`);
+            app.message.render(`${this.view.all.column.id.toUpperCase()} ${this.view.all.column.size.count}`);
+
+            break;
+
+          case this.view.all.row.id:
+
+            app.message.render(`${this.view.all.row.id.toUpperCase()} ${this.view.all.row.size.count}`);
 
             break;
 
@@ -696,7 +708,13 @@ export const Grid = function() {
 
           case this.view.all.column.id:
 
-            app.message.render(`${this.view.all.solo.id.toUpperCase()} ${this.view.all.column.size.count}`);
+            app.message.render(`${this.view.all.column.id.toUpperCase()} ${this.view.all.column.size.count}`);
+
+            break;
+
+          case this.view.all.row.id:
+
+            app.message.render(`${this.view.all.row.id.toUpperCase()} ${this.view.all.row.size.count}`);
 
             break;
 
@@ -861,8 +879,8 @@ export const Grid = function() {
       }
     });
 
-    let changeTypeFlex = new KeyboardShortcut({
-      keycode: [50],
+    let changeTypeSquare = new KeyboardShortcut({
+      keycode: [49],
       action: () => {
 
         this.view.change(this.view.all.square.id);
@@ -884,8 +902,8 @@ export const Grid = function() {
       }
     });
 
-    let changeTypeSquare = new KeyboardShortcut({
-      keycode: [49],
+    let changeTypeFlex = new KeyboardShortcut({
+      keycode: [50],
       action: () => {
 
         this.view.change(this.view.all.flex.id);
@@ -930,8 +948,31 @@ export const Grid = function() {
       }
     });
 
-    let changeTypeSolo = new KeyboardShortcut({
+    let changeTypeRow = new KeyboardShortcut({
       keycode: [52],
+      action: () => {
+
+        this.view.change(this.view.all.row.id);
+
+        this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.magnificationHide();
+
+        app.message.render(this.view.all.row.id.toUpperCase());
+
+      }
+    });
+
+    let changeTypeSolo = new KeyboardShortcut({
+      keycode: [53],
       action: () => {
 
         this.view.change(this.view.all.solo.id);

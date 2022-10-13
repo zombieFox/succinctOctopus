@@ -12,12 +12,11 @@ body {
   font-weight: var(--Theme__fontWeightRegular);
   font-style: normal;
   color: var(--Theme__text900);
+  width: max-content;
 }
 
 body {
+  min-width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
 }
