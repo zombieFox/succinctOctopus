@@ -112,7 +112,7 @@ export const Grid = function() {
 
   }
 
-  this.view.last = { id: null, scrollY: null }
+  this.view.last = { id: null, scroll: { x: null, y: null } }
 
   this.view.change = (id) => {
 
@@ -332,17 +332,40 @@ export const Grid = function() {
 
       let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
 
-      let windowHeight = window.innerHeight;
+      switch (this.view.getActive().id) {
 
-      if (gridItemRect.top >= ((window.innerHeight * 0.5) * -1) && gridItemRect.bottom <= (window.innerHeight * 1.5)) {
+        case this.view.all.flex.id:
+        case this.view.all.square.id:
+        case this.view.all.column.id:
+        case this.view.all.solo.id:
 
-        mediaItem.inView = true;
+          if (gridItemRect.top >= ((window.innerHeight * 0.5) * -1) && gridItemRect.bottom <= (window.innerHeight * 1.5)) {
 
-      } else {
+            mediaItem.inView = true;
 
-        mediaItem.inView = false;
+          } else {
 
-      };
+            mediaItem.inView = false;
+
+          };
+
+          break;
+
+        case this.view.all.row.id:
+
+          if (gridItemRect.left >= ((window.innerWidth * 0.5) * -1) && gridItemRect.right <= (window.innerWidth * 1.5)) {
+
+            mediaItem.inView = true;
+
+          } else {
+
+            mediaItem.inView = false;
+
+          };
+
+          break;
+
+      }
 
     });
 
@@ -372,17 +395,40 @@ export const Grid = function() {
 
       let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
 
-      let windowHeight = window.innerHeight;
+      switch (this.view.getActive().id) {
 
-      if (gridItemRect.bottom < ((window.innerHeight * 1.5) * -1) || gridItemRect.top > (window.innerHeight * 1.5)) {
+        case this.view.all.flex.id:
+        case this.view.all.square.id:
+        case this.view.all.column.id:
+        case this.view.all.solo.id:
 
-        mediaItem.outView = true;
+          if (gridItemRect.bottom < ((window.innerHeight * 1.5) * -1) || gridItemRect.top > (window.innerHeight * 1.5)) {
 
-      } else {
+            mediaItem.outView = true;
 
-        mediaItem.outView = false;
+          } else {
 
-      };
+            mediaItem.outView = false;
+
+          };
+
+          break;
+
+        case this.view.all.row.id:
+
+          if (gridItemRect.right < ((window.innerWidth * 1.5) * -1) || gridItemRect.left > (window.innerWidth * 1.5)) {
+
+            mediaItem.outView = true;
+
+          } else {
+
+            mediaItem.outView = false;
+
+          };
+
+          break;
+
+      }
 
     });
 
@@ -418,13 +464,32 @@ export const Grid = function() {
 
           let gridItemRect = mediaItem.gridItem.getNode().getBoundingClientRect();
 
-          let windowHeight = window.innerHeight;
+          switch (this.view.getActive().id) {
 
-          if (gridItemRect.top >= ((window.innerHeight * 0.25) * -1) && gridItemRect.bottom <= (window.innerHeight * 1.25)) {
+            case this.view.all.flex.id:
+            case this.view.all.square.id:
+            case this.view.all.column.id:
+            case this.view.all.solo.id:
 
-            allVideoMediaItemInView.push(mediaItem);
+              if (gridItemRect.top >= ((window.innerHeight * 0.5) * -1) && gridItemRect.bottom <= (window.innerHeight * 1.5)) {
 
-          };
+                allVideoMediaItemInView.push(mediaItem);
+
+              };
+
+              break;
+
+            case this.view.all.row.id:
+
+              if (gridItemRect.left >= ((window.innerWidth * 0.5) * -1) && gridItemRect.right <= (window.innerWidth * 1.5)) {
+
+                allVideoMediaItemInView.push(mediaItem);
+
+              };
+
+              break;
+
+          }
 
           break;
 

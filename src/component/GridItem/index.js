@@ -162,7 +162,9 @@ export const GridItem = function(mediaData) {
 
             app.grid.view.last.id = app.grid.view.getActive().id;
 
-            app.grid.view.last.scrollY = document.documentElement.scrollTop;
+            app.grid.view.last.scroll.x = document.documentElement.scrollLeft;
+
+            app.grid.view.last.scroll.y = document.documentElement.scrollTop;
 
             app.grid.view.change(app.grid.view.all.solo.id);
 
@@ -186,7 +188,9 @@ export const GridItem = function(mediaData) {
 
           case app.grid.view.all.solo.id:
 
-            let scrollPosition = document.documentElement.scrollTop;
+            let scrollPositionY = document.documentElement.scrollTop;
+
+            let scrollPositionX = document.documentElement.scrollLeft;
 
             if (app.grid.view.last.id === null || app.grid.view.last.id == app.grid.view.all.solo.id) {
 
@@ -210,11 +214,15 @@ export const GridItem = function(mediaData) {
 
             app.grid.outView();
 
-            document.documentElement.scrollTop = app.grid.view.last.scrollY;
+            document.documentElement.scrollLeft = app.grid.view.last.scroll.x;
+
+            document.documentElement.scrollTop = app.grid.view.last.scroll.y;
 
             app.grid.view.last.id = app.grid.view.all.solo.id;
 
-            app.grid.view.last.scrollY = scrollPosition;
+            app.grid.view.last.scroll.x = scrollPositionX;
+
+            app.grid.view.last.scroll.y = scrollPositionY;
 
             app.message.render(app.grid.view.getActive().id.toUpperCase());
 
