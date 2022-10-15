@@ -312,7 +312,7 @@ export const Zoomer = function(grid) {
 
       };
 
-      if (start >= ((windowSize * 0.75) * -1) && end <= (windowSize * 1.75)) {
+      if (start >= ((windowSize * 0.2) * -1) && end <= (windowSize * 1.2)) {
 
         this.mediaItemInView = mediaItem;
 
