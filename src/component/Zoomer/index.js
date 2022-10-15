@@ -282,9 +282,43 @@ export const Zoomer = function(grid) {
 
   this.mediaInView = () => {
 
-    grid.mediaInView();
+    grid.allMediaItem.forEach(mediaItem => {
 
-    this.mediaItemInView = grid.inView();
+      let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
+
+      let windowSize, start, end;
+
+      switch (config.grid.direction) {
+
+        case 'vertical':
+
+          windowSize = window.innerHeight;
+
+          start = gridItemRect.top;
+
+          end = gridItemRect.bottom;
+
+          break;
+
+        case 'horizontal':
+
+          windowSize = window.innerWidth;
+
+          start = gridItemRect.left;
+
+          end = gridItemRect.right;
+
+          break;
+
+      };
+
+      if (start >= ((windowSize * 0.75) * -1) && end <= (windowSize * 1.75)) {
+
+        this.mediaItemInView = mediaItem;
+
+      };
+
+    });
 
   }
 
