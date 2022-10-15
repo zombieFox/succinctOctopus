@@ -531,7 +531,7 @@ export const Grid = function() {
 
           let gridItemRect = mediaItem.gridItem.getNode().getBoundingClientRect();
 
-          if (start >= ((windowSize * 2) * -1) && end <= (windowSize * 2)) {
+          if (start >= ((windowSize * 0.1) * -1) && end <= (windowSize * 1.1)) {
 
             allVideoMediaItemInView.push(mediaItem);
 
