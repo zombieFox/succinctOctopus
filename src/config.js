@@ -8,21 +8,10 @@ export const config = {
   },
 
   grid: {
-    view: 'flex', // (square|flex|column|row|solo)
-    gap: {
-      count: 4,
-      default: 4,
-      min: 0,
-      max: 100,
-      increment: 1,
-    },
-    radius: {
-      count: 2,
-      default: 2,
-      min: 0,
-      max: 50,
-      increment: 1,
-    },
+    view: 'flex', // (square|flex|line|solo),
+    direction: 'vertical', // (vertical|horizontal)
+    gap: { count: 4, default: 4, min: 0, max: 100, increment: 1, },
+    radius: { count: 2, default: 2, min: 0, max: 50, increment: 1, },
   },
 
   zoom: {

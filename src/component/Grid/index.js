@@ -24,6 +24,27 @@ export const Grid = function() {
 
     applyCSSVar('--Grid__radiusCount', config.grid.radius.count, this.node.grid);
 
+    switch (config.grid.direction) {
+
+      default:
+      case 'vertical':
+
+        this.node.grid.classList.remove('Grid__horizontal');
+
+        this.node.grid.classList.add('Grid__vertical');
+
+        break;
+
+      case 'horizontal':
+
+        this.node.grid.classList.remove('Grid__vertical');
+
+        this.node.grid.classList.add('Grid__horizontal');
+
+        break;
+
+    }
+
     this.view.option.forEach(gridViewItem => {
 
       applyCSSVar(`--Grid__${gridViewItem.id}SizeCount`, gridViewItem.size.count, this.node.grid);
@@ -55,15 +76,10 @@ export const Grid = function() {
       active: false,
       size: { count: 4, default: 4, min: 2, max: 100, increment: 1 },
     },
-    column: {
-      id: 'column',
+    line: {
+      id: 'line',
       active: false,
       size: { count: 36, default: 36, min: 6, max: 100, increment: 1 },
-    },
-    row: {
-      id: 'row',
-      active: false,
-      size: { count: 48, default: 48, min: 6, max: 100, increment: 1 },
     },
     solo: {
       id: 'solo',
@@ -75,8 +91,7 @@ export const Grid = function() {
   this.view.option = [
     this.view.all.square,
     this.view.all.flex,
-    this.view.all.column,
-    this.view.all.row,
+    this.view.all.line,
     this.view.all.solo,
   ]
 
@@ -169,6 +184,28 @@ export const Grid = function() {
     this.view.option[activeIndex].active = true;
 
     console.log(`[Grid] view cycled ${direction} to ${this.view.option[activeIndex].id}`);
+
+  }
+
+  this.view.direction = () => {
+
+    switch (config.grid.direction) {
+
+      case 'vertical':
+
+        config.grid.direction = 'horizontal';
+
+        break;
+
+      case 'horizontal':
+
+        config.grid.direction = 'vertical';
+
+        break;
+
+    }
+
+    console.log(`[Grid] view direction to ${config.grid.direction}`);
 
   }
 
@@ -332,40 +369,41 @@ export const Grid = function() {
 
       let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
 
-      switch (this.view.getActive().id) {
+      let windowSize, start, end;
 
-        case this.view.all.flex.id:
-        case this.view.all.square.id:
-        case this.view.all.column.id:
-        case this.view.all.solo.id:
+      switch (config.grid.direction) {
 
-          if (gridItemRect.top >= ((window.innerHeight * 0.5) * -1) && gridItemRect.bottom <= (window.innerHeight * 1.5)) {
+        case 'vertical':
 
-            mediaItem.inView = true;
+          windowSize = window.innerHeight;
 
-          } else {
+          start = gridItemRect.top;
 
-            mediaItem.inView = false;
-
-          };
+          end = gridItemRect.bottom;
 
           break;
 
-        case this.view.all.row.id:
+        case 'horizontal':
 
-          if (gridItemRect.left >= ((window.innerWidth * 0.5) * -1) && gridItemRect.right <= (window.innerWidth * 1.5)) {
+          windowSize = window.innerWidth;
 
-            mediaItem.inView = true;
+          start = gridItemRect.left;
 
-          } else {
-
-            mediaItem.inView = false;
-
-          };
+          end = gridItemRect.right;
 
           break;
 
-      }
+      };
+
+      if (start >= ((windowSize * 2) * -1) && end <= (windowSize * 2)) {
+
+        mediaItem.inView = true;
+
+      } else {
+
+        mediaItem.inView = false;
+
+      };
 
     });
 
@@ -395,40 +433,41 @@ export const Grid = function() {
 
       let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
 
-      switch (this.view.getActive().id) {
+      let windowSize, start, end;
 
-        case this.view.all.flex.id:
-        case this.view.all.square.id:
-        case this.view.all.column.id:
-        case this.view.all.solo.id:
+      switch (config.grid.direction) {
 
-          if (gridItemRect.bottom < ((window.innerHeight * 1.5) * -1) || gridItemRect.top > (window.innerHeight * 1.5)) {
+        case 'vertical':
 
-            mediaItem.outView = true;
+          windowSize = window.innerHeight;
 
-          } else {
+          start = gridItemRect.top;
 
-            mediaItem.outView = false;
-
-          };
+          end = gridItemRect.bottom;
 
           break;
 
-        case this.view.all.row.id:
+        case 'horizontal':
 
-          if (gridItemRect.right < ((window.innerWidth * 1.5) * -1) || gridItemRect.left > (window.innerWidth * 1.5)) {
+          windowSize = window.innerWidth;
 
-            mediaItem.outView = true;
+          start = gridItemRect.left;
 
-          } else {
-
-            mediaItem.outView = false;
-
-          };
+          end = gridItemRect.right;
 
           break;
 
-      }
+      };
+
+      if (start < ((windowSize * 2) * -1) || end > (windowSize * 2)) {
+
+        mediaItem.outView = true;
+
+      } else {
+
+        mediaItem.outView = false;
+
+      };
 
     });
 
@@ -458,38 +497,45 @@ export const Grid = function() {
 
     this.allMediaItem.forEach(mediaItem => {
 
+      let gridItemRect = mediaItem.gridItem.mediaItem.getNode().getBoundingClientRect();
+
+      let windowSize, start, end;
+
+      switch (config.grid.direction) {
+
+        case 'vertical':
+
+          windowSize = window.innerHeight;
+
+          start = gridItemRect.top;
+
+          end = gridItemRect.bottom;
+
+          break;
+
+        case 'horizontal':
+
+          windowSize = window.innerWidth;
+
+          start = gridItemRect.left;
+
+          end = gridItemRect.right;
+
+          break;
+
+      };
+
       switch (mediaItem.gridItem.type) {
 
         case 'video':
 
           let gridItemRect = mediaItem.gridItem.getNode().getBoundingClientRect();
 
-          switch (this.view.getActive().id) {
+          if (start >= ((windowSize * 2) * -1) && end <= (windowSize * 2)) {
 
-            case this.view.all.flex.id:
-            case this.view.all.square.id:
-            case this.view.all.column.id:
-            case this.view.all.solo.id:
+            allVideoMediaItemInView.push(mediaItem);
 
-              if (gridItemRect.top >= ((window.innerHeight * 0.5) * -1) && gridItemRect.bottom <= (window.innerHeight * 1.5)) {
-
-                allVideoMediaItemInView.push(mediaItem);
-
-              };
-
-              break;
-
-            case this.view.all.row.id:
-
-              if (gridItemRect.left >= ((window.innerWidth * 0.5) * -1) && gridItemRect.right <= (window.innerWidth * 1.5)) {
-
-                allVideoMediaItemInView.push(mediaItem);
-
-              };
-
-              break;
-
-          }
+          };
 
           break;
 
@@ -716,15 +762,9 @@ export const Grid = function() {
 
             break;
 
-          case this.view.all.column.id:
+          case this.view.all.line.id:
 
-            app.message.render(`${this.view.all.column.id.toUpperCase()} ${this.view.all.column.size.count}`);
-
-            break;
-
-          case this.view.all.row.id:
-
-            app.message.render(`${this.view.all.row.id.toUpperCase()} ${this.view.all.row.size.count}`);
+            app.message.render(`${this.view.all.line.id.toUpperCase()} ${this.view.all.line.size.count}`);
 
             break;
 
@@ -771,15 +811,9 @@ export const Grid = function() {
 
             break;
 
-          case this.view.all.column.id:
+          case this.view.all.line.id:
 
-            app.message.render(`${this.view.all.column.id.toUpperCase()} ${this.view.all.column.size.count}`);
-
-            break;
-
-          case this.view.all.row.id:
-
-            app.message.render(`${this.view.all.row.id.toUpperCase()} ${this.view.all.row.size.count}`);
+            app.message.render(`${this.view.all.line.id.toUpperCase()} ${this.view.all.line.size.count}`);
 
             break;
 
@@ -848,7 +882,21 @@ export const Grid = function() {
 
           case this.view.all.solo.id:
 
-            this.node.grid.scrollTop = this.node.grid.scrollTop + window.innerHeight;
+            switch (config.grid.direction) {
+
+              case 'vertical':
+
+                this.node.grid.scrollTop = this.node.grid.scrollTop + window.innerHeight;
+
+                break;
+
+              case 'horizontal':
+
+                this.node.grid.scrollLeft = this.node.grid.scrollLeft + window.innerWidth;
+
+                break;
+
+            };
 
             this.mediaInView();
 
@@ -877,7 +925,21 @@ export const Grid = function() {
 
           case this.view.all.solo.id:
 
-            this.node.grid.scrollTop = this.node.grid.scrollTop - window.innerHeight;
+            switch (config.grid.direction) {
+
+              case 'vertical':
+
+                this.node.grid.scrollTop = this.node.grid.scrollTop - window.innerHeight;
+
+                break;
+
+              case 'horizontal':
+
+                this.node.grid.scrollLeft = this.node.grid.scrollLeft - window.innerWidth;
+
+                break;
+
+            };
 
             this.mediaInView();
 
@@ -894,6 +956,41 @@ export const Grid = function() {
             break;
 
         }
+
+      }
+    });
+
+    let viewDirection = new KeyboardShortcut({
+      keycode: [69],
+      action: () => {
+
+        this.view.direction();
+
+        this.style();
+
+        this.mediaInView();
+
+        this.mediaOutView();
+
+        this.inView();
+
+        this.outView();
+
+        this.panReset();
+
+        switch (this.view.getActive().id) {
+
+          case this.view.all.flex.id:
+          case this.view.all.square.id:
+          case this.view.all.line.id:
+
+            this.magnificationHide();
+
+            break;
+
+        }
+
+        app.message.render(`${this.view.getActive().id.toUpperCase()} ${config.grid.direction.toUpperCase()}`);
 
       }
     });
@@ -994,7 +1091,7 @@ export const Grid = function() {
       keycode: [51],
       action: () => {
 
-        this.view.change(this.view.all.column.id);
+        this.view.change(this.view.all.line.id);
 
         this.style();
 
@@ -1008,36 +1105,13 @@ export const Grid = function() {
 
         this.magnificationHide();
 
-        app.message.render(this.view.all.column.id.toUpperCase());
-
-      }
-    });
-
-    let changeTypeRow = new KeyboardShortcut({
-      keycode: [52],
-      action: () => {
-
-        this.view.change(this.view.all.row.id);
-
-        this.style();
-
-        this.mediaInView();
-
-        this.mediaOutView();
-
-        this.inView();
-
-        this.outView();
-
-        this.magnificationHide();
-
-        app.message.render(this.view.all.row.id.toUpperCase());
+        app.message.render(this.view.all.line.id.toUpperCase());
 
       }
     });
 
     let changeTypeSolo = new KeyboardShortcut({
-      keycode: [53],
+      keycode: [52],
       action: () => {
 
         this.view.change(this.view.all.solo.id);

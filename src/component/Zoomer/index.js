@@ -41,7 +41,7 @@ export const Zoomer = function(grid) {
 
         let mediaItemHeight = this.mediaItemInZoom.gridItem.getNode().clientHeight;
 
-        let cursorPostionX = this.magnification.state.eventData.clientX - this.mediaItemInZoom.gridItem.getNode().offsetLeft;
+        let cursorPostionX = (this.magnification.state.eventData.clientX - this.mediaItemInZoom.gridItem.getNode().offsetLeft) + app.grid.getNode().scrollLeft;
 
         let cursorPostionY = (this.magnification.state.eventData.clientY - this.mediaItemInZoom.gridItem.getNode().offsetTop) + app.grid.getNode().scrollTop;
 
@@ -281,6 +281,8 @@ export const Zoomer = function(grid) {
   }
 
   this.mediaInView = () => {
+
+    grid.mediaInView();
 
     this.mediaItemInView = grid.inView();
 

@@ -17,6 +17,8 @@
   position: relative;
   justify-content: center;
   align-content: center;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .Grid__square .GridItem .Image,
@@ -63,21 +65,32 @@
   transform: translateX(calc(var(--GridItem__panX) * 1px));
 }
 
-.Grid__flex .GridItem {
+.Grid__flex.Grid__vertical .GridItem {
   width: calc(((var(--GridItem__mediaWidth) * (var(--Grid__flexSizeCount) * 10)) / var(--GridItem__mediaHeight)) * 1px);
   flex-grow: calc((var(--GridItem__mediaWidth) * (var(--Grid__flexSizeCount) * 10)) / var(--GridItem__mediaHeight));
+  flex-shrink: 0;
+  max-width: 100%;
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
 }
 
-.Grid__column .GridItem {
-  width: calc(var(--Grid__columnSizeCount) * 1%);
+.Grid__flex.Grid__horizontal .GridItem {
+  height: calc(((var(--GridItem__mediaHeight) * (var(--Grid__flexSizeCount) * 10)) / var(--GridItem__mediaWidth)) * 1px);
+  flex-grow: calc((var(--GridItem__mediaHeight) * (var(--Grid__flexSizeCount) * 10)) / var(--GridItem__mediaWidth));
+  flex-shrink: 0;
+  max-height: 100%;
+  aspect-ratio: var(--GridItem__mediaAspectRatio);
+}
+
+.Grid__vertical.Grid__line .GridItem {
+  width: calc(var(--Grid__lineSizeCount) * 1%);
   height: initial;
   aspect-ratio: var(--GridItem__mediaAspectRatio);
   flex-shrink: 0;
 }
 
-.Grid__row .GridItem {
+.Grid__horizontal.Grid__line .GridItem {
   width: initial;
-  height: calc(var(--Grid__rowSizeCount) * 1%);
+  height: calc(var(--Grid__lineSizeCount) * 1%);
   aspect-ratio: var(--GridItem__mediaAspectRatio);
   flex-shrink: 0;
 }

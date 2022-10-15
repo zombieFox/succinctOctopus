@@ -62,7 +62,7 @@ export const GridItem = function(mediaData) {
 
     let overflowY = (mediaItemHeight - gridItemHeight) / 2;
 
-    let cursorPostionX = event.clientX - this.node.gridItem.offsetLeft;
+    let cursorPostionX = (event.clientX + window.scrollX) - this.node.gridItem.offsetLeft;
 
     let cursorPostionY = (event.clientY + window.scrollY) - this.node.gridItem.offsetTop;
 
@@ -157,8 +157,7 @@ export const GridItem = function(mediaData) {
 
           case app.grid.view.all.flex.id:
           case app.grid.view.all.square.id:
-          case app.grid.view.all.column.id:
-          case app.grid.view.all.row.id:
+          case app.grid.view.all.line.id:
 
             app.grid.view.last.id = app.grid.view.getActive().id;
 
