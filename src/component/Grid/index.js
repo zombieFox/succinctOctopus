@@ -607,6 +607,38 @@ export const Grid = function() {
 
   }
 
+  this.allVideoPause = () => {
+
+    let unpausedVideo = 0;
+
+    this.allMediaItem.forEach(mediaItem => {
+
+      switch (mediaItem.gridItem.type) {
+
+        case 'video':
+
+          if (!mediaItem.gridItem.mediaItem.isPaused()) {
+
+            unpausedVideo++;
+
+          }
+
+          mediaItem.gridItem.mediaItem.pause();
+
+          break;
+
+      }
+
+    });
+
+    if (unpausedVideo > 0) {
+
+      console.log('[Grid] pause all video play');
+
+    }
+
+  }
+
   this.allVideoToggleMute = () => {
 
     if (this.videoMute) {
@@ -774,6 +806,10 @@ export const Grid = function() {
 
           this.autoPlayVideoInView();
 
+        } else {
+
+          this.allVideoPause();
+
         }
 
       }
@@ -822,6 +858,10 @@ export const Grid = function() {
         if (config.media.autoPlay) {
 
           this.autoPlayVideoInView();
+
+        } else {
+
+          this.allVideoPause();
 
         }
 
@@ -1269,7 +1309,11 @@ export const Grid = function() {
 
         this.autoPlayVideoInView();
 
-      };
+      } else {
+
+        this.allVideoPause();
+
+      }
 
     });
 
@@ -1286,6 +1330,10 @@ export const Grid = function() {
       if (config.media.autoPlay) {
 
         this.autoPlayVideoInView();
+
+      } else {
+
+        this.allVideoPause();
 
       }
 
