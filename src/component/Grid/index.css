@@ -42,6 +42,19 @@
   height: 100vh;
 }
 
+.Grid.Grid__horizontal.Grid__flex {
+  /* workaround */
+  /* make the parent grow horizontally to the width defined by the children */
+  /* https://stackoverflow.com/questions/33891709/when-flexbox-items-wrap-in-column-mode-container-does-not-grow-its-width */
+  flex-direction: row;
+  writing-mode: vertical-lr;
+}
+
+.Grid.Grid__horizontal.Grid__flex>* {
+  writing-mode: initial;
+  /* end workaround */
+}
+
 .Grid.Grid__flex::after {
   content: "";
   flex-grow: 999999999;
