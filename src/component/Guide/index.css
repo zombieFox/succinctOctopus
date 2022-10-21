@@ -37,7 +37,7 @@
 
 .Guide__modal {
   background-color: hsla(var(--Theme__primary2H), calc(var(--Theme__primary2S) * 1%), calc(var(--Theme__primary2L) * 1%), 0.9);
-  border-radius: calc(var(--Grid__radiusCount) * 0.2vmax);
+  border-radius: 1em;
   padding: 2em;
   display: none;
   flex-direction: column;
