@@ -55,14 +55,14 @@
 }
 
 :root {
-  --Guide__keySize: 30;
+  --Guide__keySize: 50;
 }
 
 .Guide__intro,
 .Guide__content {
   display: flex;
   flex-direction: column;
-  gap: calc((var(--Guide__keySize) / 4) * 0.1em);
+  gap: calc((var(--Guide__keySize) / 8) * 0.1em);
 }
 
 .Guide__contentItem {
@@ -71,8 +71,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: calc((var(--Guide__keySize) / 10) * 0.1rem);
   gap: calc((var(--Guide__keySize) / 2) * 0.1em);
-  ;
 }
 
 .Guide__key {
@@ -91,9 +91,10 @@
   background-color: var(--Theme__accent200);
   border-bottom: 2px solid var(--Theme__accent600);
   border-radius: 6px;
+  font-size: 1.5em;
   color: var(--Theme__text200);
-  width: calc(var(--Guide__keySize) * 0.1em);
-  height: calc(var(--Guide__keySize) * 0.1em);
+  width: calc((var(--Guide__keySize) / 2) * 0.1em);
+  height: calc((var(--Guide__keySize) / 2) * 0.1em);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,5 +102,5 @@
 }
 
 .Guide__message {
-  line-height: calc((var(--Guide__keySize) / 2) * 0.1em);
+  font-size: 1.75em;
 }
