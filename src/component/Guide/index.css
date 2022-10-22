@@ -54,29 +54,36 @@
   display: flex;
 }
 
+:root {
+  --Guide__keySize: 30;
+}
+
 .Guide__intro,
 .Guide__content {
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
+  gap: calc((var(--Guide__keySize) / 4) * 0.1em);
 }
 
 .Guide__contentItem {
+  width: 100%;
+  font-size: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2em;
-  width: 100%;
+  gap: calc((var(--Guide__keySize) / 2) * 0.1em);
+  ;
 }
 
 .Guide__key {
   font-family: var(--Theme__fontDisplay);
   font-weight: var(--Theme__fontWeightBold);
-  flex: 0 0 4em;
+  flex: 0 0 calc(((var(--Guide__keySize) * 2) + (var(--Guide__keySize) / 4)) * 0.1em);
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   flex-wrap: nowrap;
-  gap: 0.25em;
+  gap: calc((var(--Guide__keySize) / 4) * 0.1em);
   line-height: 1;
 }
 
@@ -85,11 +92,14 @@
   border-bottom: 2px solid var(--Theme__accent600);
   border-radius: 6px;
   color: var(--Theme__text200);
-  width: 2em;
-  height: 2em;
+  width: calc(var(--Guide__keySize) * 0.1em);
+  height: calc(var(--Guide__keySize) * 0.1em);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 0 0 auto;
 }
 
-.Guide__message {}
+.Guide__message {
+  line-height: calc((var(--Guide__keySize) / 2) * 0.1em);
+}
