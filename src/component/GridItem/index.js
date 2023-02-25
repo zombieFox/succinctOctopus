@@ -129,7 +129,7 @@ export const GridItem = function(mediaData) {
 
       case 'video':
 
-        clickOnProgress = event.path.includes(this.mediaItem.node.progress);
+        clickOnProgress = event.composedPath().includes(this.mediaItem.node.progress);
 
         break;
 
