@@ -5,7 +5,7 @@ import { KeyboardShortcut } from '../KeyboardShortcut';
 
 import './index.css';
 
-export const Guide = function() {
+export const Guide = function () {
 
   this.open = false;
 
@@ -28,7 +28,7 @@ export const Guide = function() {
     { key: ['1'], message: 'Change to SQUARE gallery layout.' },
     { key: ['2'], message: 'Change to FLEX gallery layout.' },
     { key: ['3'], message: 'Change to COLUMN gallery layout.' },
-    { key: ['5'], message: 'Change to SOLO gallery layout.' },
+    { key: ['4'], message: 'Change to SOLO gallery layout.' },
     { key: ['Q', 'W'], message: 'Cycle back and forth between gallery layouts.' },
     { key: ['E'], message: 'Cycle back and forth between VERTICAL and HORIZONTAL layout direction.' },
     { key: ['T', 'Y'], message: 'Increase or decrease gallery gap.' },
