@@ -14,14 +14,12 @@
 .Guide__toggle {
   background-color: hsla(var(--Theme__accent2H), calc(var(--Theme__accent2S) * 1%), calc(var(--Theme__accent2L) * 1%), 0.8);
   border: 0;
-  border-radius: 100%;
-  padding: 1em;
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
   color: var(--Theme__text100);
   position: absolute;
-  bottom: 1em;
+  top: 1em;
   right: 1em;
-  width: 2vmin;
-  height: 2vmin;
   display: flex;
   align-items: center;
   justify-content: center;

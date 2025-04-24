@@ -12,8 +12,8 @@
 }
 
 .Message__area {
-  width: 90%;
-  height: 90%;
+  width: 90vw;
+  height: 90vh;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -22,9 +22,8 @@
 .Message__item {
   font-family: var(--Theme__fontDisplay);
   font-weight: var(--Theme__fontWeightBold);
-  font-size: clamp(1em, 6vw, 10em);
-  white-space: nowrap;
+  font-size: clamp(1em, 16vw, 6em);
   line-height: 1;
-  text-align: center;
+  text-align: left;
   -webkit-text-stroke: 0.1vw var(--Theme__text100);
 }

@@ -4,7 +4,7 @@ import { clearChildNode } from '../../utility/clearChildNode';
 
 import './index.css';
 
-export const Message = function() {
+export const Message = function () {
 
   this.node = {
     message: node('div|class:Message'),
@@ -37,7 +37,7 @@ export const Message = function() {
 
       clearChildNode(this.node.area);
 
-    }, 800);
+    }, 1000);
 
     this.node.area.append(messageItem);
 

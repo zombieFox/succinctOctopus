@@ -24,7 +24,7 @@ export const Guide = function () {
   }
 
   this.content = [
-    { key: ['H'], message: 'Toggle help.' },
+    { key: ['H'], message: 'Toggle guide.' },
     { key: ['1'], message: 'Change to SQUARE gallery layout.' },
     { key: ['2'], message: 'Change to FLEX gallery layout.' },
     { key: ['3'], message: 'Change to COLUMN gallery layout.' },
@@ -50,9 +50,9 @@ export const Guide = function () {
     modal: node('div|class:Guide__modal'),
     intro: node('div|class:Guide__intro'),
     heading: node('h1:Keybaord shortcuts|class:Guide__heading'),
-    description: node('p:Succinct Octopus has many features. These can be controlled with keybaord shortcuts.|class:Guide__description'),
+    description: node('p:Succinct Octopus has many features that can be controlled with keybaord shortcuts.|class:Guide__description'),
     content: node('div|class:Guide__content'),
-    toggle: node('button:?|class:Guide__toggle')
+    toggle: node('button:Guide|class:Guide__toggle')
   }
 
   this.render = () => {
@@ -121,7 +121,7 @@ export const Guide = function () {
 
         if (this.open) {
 
-          app.message.render('HELP');
+          app.message.render('GUIDE');
 
         }
 
@@ -136,7 +136,7 @@ export const Guide = function () {
 
       if (this.open) {
 
-        app.message.render('HELP');
+        app.message.render('GUIDE');
 
       }
 
